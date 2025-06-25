@@ -30,14 +30,16 @@ function initNavbarScroll() {
 
     function updateNavbar() {
         const currentScrollY = window.scrollY;
+        const rootStyles = getComputedStyle(document.documentElement);
+        const bgRgb = rootStyles.getPropertyValue('--bg-primary-rgb').trim();
         
         // Enhanced background opacity based on scroll
         if (currentScrollY > 100) {
-            navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            navbar.style.background = `rgba(${bgRgb}, 0.95)`;
             navbar.style.backdropFilter = 'blur(20px)';
             navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
         } else {
-            navbar.style.background = 'rgba(10, 10, 10, 0.8)';
+            navbar.style.background = `rgba(${bgRgb}, 0.8)`;
             navbar.style.backdropFilter = 'blur(10px)';
             navbar.style.boxShadow = 'none';
         }

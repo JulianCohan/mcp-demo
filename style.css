@@ -8,6 +8,7 @@
 :root {
     /* Dark mode (default) */
     --bg-primary: #0a0a0a;
+    --bg-primary-rgb: 10, 10, 10;
     --bg-secondary: #1a1a1a;
     --bg-dark: #050505;
     --text-primary: #ffffff;
@@ -29,6 +30,7 @@
 /* Light mode */
 [data-theme="light"] {
     --bg-primary: #ffffff;
+    --bg-primary-rgb: 255, 255, 255;
     --bg-secondary: #f8fafc;
     --bg-dark: #f1f5f9;
     --text-primary: #1e293b;
@@ -103,11 +105,12 @@ body.keyboard-navigation *:focus {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(10, 10, 10, 0.8);
+    background: rgba(var(--bg-primary-rgb), 0.8);
     backdrop-filter: blur(10px);
     z-index: 1000;
     padding: 1rem 0;
     transition: all 0.3s ease;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .nav-container {
