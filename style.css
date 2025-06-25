@@ -473,6 +473,12 @@ button {
 .card-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    line-height: 1;
 }
 
 .explanation-card h3 {
@@ -729,6 +735,12 @@ code {
 .impl-icon {
     font-size: 2rem;
     min-width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    line-height: 1;
 }
 
 .impl-content h4 {
@@ -848,6 +860,13 @@ code {
 .problem-icon, .benefit-icon {
     font-size: 1.5rem;
     min-width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    line-height: 1;
+    flex-shrink: 0;
 }
 
 .problem-content h4, .benefit-content h4 {
@@ -1064,6 +1083,13 @@ code {
 .feature-icon {
     font-size: 2rem;
     min-width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    line-height: 1;
+    flex-shrink: 0;
 }
 
 .feature-content h4 {
@@ -1418,7 +1444,13 @@ code {
 .principle-icon {
     font-size: 3rem;
     min-width: 60px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    line-height: 1;
+    flex-shrink: 0;
 }
 
 .principle-content h4 {
