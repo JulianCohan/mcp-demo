@@ -214,24 +214,36 @@ function initParallaxEffects() {
 // Tab switching functionality
 function initTabSwitching() {
     const tabContainers = document.querySelectorAll('.code-tabs, .output-tabs');
+    console.log('Found tab containers:', tabContainers.length);
     
     tabContainers.forEach(container => {
         const buttons = container.querySelectorAll('.tab-button');
         const contents = container.querySelectorAll('.tab-content');
+        console.log('Container has buttons:', buttons.length, 'contents:', contents.length);
         
         buttons.forEach(button => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
                 const targetTab = button.getAttribute('data-tab');
+                console.log('Tab clicked:', targetTab);
                 
-                // Remove active class from all buttons and contents
-                buttons.forEach(btn => btn.classList.remove('active'));
-                contents.forEach(content => content.classList.remove('active'));
+                // Find the parent container for this specific tab group
+                const parentContainer = button.closest('.code-tabs, .output-tabs');
+                const siblingButtons = parentContainer.querySelectorAll('.tab-button');
+                const siblingContents = parentContainer.querySelectorAll('.tab-content');
+                
+                // Remove active class from all buttons and contents in this group
+                siblingButtons.forEach(btn => btn.classList.remove('active'));
+                siblingContents.forEach(content => content.classList.remove('active'));
                 
                 // Add active class to clicked button and corresponding content
                 button.classList.add('active');
-                const targetContent = container.querySelector(`.tab-content[data-tab="${targetTab}"]`);
+                const targetContent = parentContainer.querySelector(`.tab-content[data-tab="${targetTab}"]`);
                 if (targetContent) {
                     targetContent.classList.add('active');
+                    console.log('Activated tab content:', targetTab);
+                } else {
+                    console.error('Tab content not found for:', targetTab);
                 }
             });
         });
@@ -642,12 +654,18 @@ function initThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.querySelector('.theme-icon');
     
+    if (!themeToggle || !themeIcon) {
+        console.error('Theme toggle elements not found');
+        return;
+    }
+    
     // Check for saved theme preference or default to 'dark'
     const currentTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', currentTheme);
     updateThemeIcon(currentTheme);
     
-    themeToggle.addEventListener('click', function() {
+    themeToggle.addEventListener('click', function(e) {
+        e.preventDefault();
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         
@@ -663,7 +681,9 @@ function initThemeToggle() {
     });
     
     function updateThemeIcon(theme) {
-        themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        if (themeIcon) {
+            themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        }
     }
 }
 

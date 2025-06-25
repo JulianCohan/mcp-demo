@@ -4,7 +4,10 @@
       "WebFetch(domain:juliancohan.github.io)",
       "Bash(find:*)",
       "Bash(curl:*)",
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "Bash(echo:*)",
+      "Bash(grep:*)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }

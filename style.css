@@ -158,8 +158,9 @@ body.keyboard-navigation *:focus {
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-left: 1rem;
     position: relative;
+    z-index: 100;
+    margin-left: 1rem;
 }
 
 .theme-toggle:focus-visible::after {
@@ -616,6 +617,10 @@ button {
     transition: all 0.3s ease;
     font-weight: 500;
     border-bottom: 3px solid transparent;
+    position: relative;
+    z-index: 10;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .tab-button.active {
