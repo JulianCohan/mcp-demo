@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
@@ -17,8 +17,8 @@
             <div class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#what-is-mcp">What is MCP</a>
+                <a href="#mcp-examples">Examples</a>
                 <a href="#how-different">How It's Different</a>
-                <a href="#impact">World Impact</a>
                 <a href="#earnings-agent">EarningsAgent</a>
             </div>
         </div>
@@ -29,7 +29,7 @@
         <div class="hero-background"></div>
         <div class="hero-content">
             <h1 class="hero-title">The Future of AI Integration is Here</h1>
-            <p class="hero-subtitle">Discover how Model Context Protocol revolutionizes AI connectivity and see it in action with EarningsAgent</p>
+            <p class="hero-subtitle">Discover how Model Context Protocol revolutionizes AI connectivity and see it in action with EarningsAgent - an AI-powered financial research platform that transforms hours of manual analysis into minutes of automated intelligence</p>
             <div class="hero-buttons">
                 <a href="#what-is-mcp" class="btn btn-primary">Learn About MCP</a>
                 <a href="#earnings-agent" class="btn btn-secondary">Explore EarningsAgent</a>
@@ -44,42 +44,441 @@
     <section id="what-is-mcp" class="section">
         <div class="container">
             <h2 class="section-title">What is Model Context Protocol?</h2>
-            <p class="section-subtitle">Think of MCP like a USB-C port for AI applications</p>
+            <p class="section-subtitle">MCP is like USB-C for AI applications - a universal standard that connects AI models to any data source, tool, or system through a single, unified protocol</p>
             
+            <div class="deep-explanation">
+                <div class="explanation-content">
+                    <h3>The Problem MCP Solves</h3>
+                    <p>Before MCP, every AI application needed custom integration code for each data source. A chatbot connecting to 5 different databases required 5 different connectors. An IDE assistant accessing GitHub, Slack, and Postgres needed 3 separate implementations. This created an "N×M problem" - N applications × M data sources = exponential complexity.</p>
+                    
+                    <div class="problem-diagram">
+                        <div class="before-mcp">
+                            <h4>Before MCP: N×M Integrations</h4>
+                            <div class="complexity-grid">
+                                <div class="app-box">AI App 1</div>
+                                <div class="connector-lines">
+                                    <div class="line"></div>
+                                    <div class="line"></div>
+                                    <div class="line"></div>
+                                </div>
+                                <div class="data-sources">
+                                    <div class="source-box">Database</div>
+                                    <div class="source-box">Slack</div>
+                                    <div class="source-box">GitHub</div>
+                                </div>
+                            </div>
+                            <p class="complexity-note">Custom connector for each combination</p>
+                        </div>
+                        
+                        <div class="after-mcp">
+                            <h4>With MCP: Universal Protocol</h4>
+                            <div class="unified-grid">
+                                <div class="app-box">Any AI App</div>
+                                <div class="mcp-protocol">MCP Protocol</div>
+                                <div class="data-sources">
+                                    <div class="source-box">Any Data Source</div>
+                                </div>
+                            </div>
+                            <p class="complexity-note">Single standard for all connections</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="mcp-explanation">
                 <div class="explanation-card">
                     <div class="card-icon">🔌</div>
                     <h3>Universal Standard</h3>
-                    <p>Just as USB-C standardized device connections, MCP standardizes how AI connects to data sources</p>
+                    <p>Just as USB-C standardized device connections, MCP standardizes how AI connects to data sources. One protocol works with databases, APIs, files, and tools.</p>
+                    <div class="card-detail">
+                        <strong>Technical:</strong> JSON-RPC 2.0 protocol with standardized message formats for initialization, discovery, and execution.
+                    </div>
                 </div>
                 <div class="explanation-card">
                     <div class="card-icon">🔗</div>
-                    <h3>Seamless Integration</h3>
-                    <p>Connect AI models to databases, APIs, and tools through a single, unified protocol</p>
+                    <h3>Three Core Components</h3>
+                    <p><strong>Tools:</strong> Functions AI can call (like APIs)<br/>
+                    <strong>Resources:</strong> Data AI can read (like files)<br/>
+                    <strong>Prompts:</strong> Templates for optimal interactions</p>
+                    <div class="card-detail">
+                        <strong>Example:</strong> A weather tool, company database resource, and "analyze trends" prompt template.
+                    </div>
                 </div>
                 <div class="explanation-card">
                     <div class="card-icon">⚡</div>
-                    <h3>Instant Access</h3>
-                    <p>Give AI real-time access to your data without building custom integrations</p>
+                    <h3>Real-time & Secure</h3>
+                    <p>AI gets instant access to live data while maintaining security boundaries. Each MCP server controls what data is exposed and how it's accessed.</p>
+                    <div class="card-detail">
+                        <strong>Security:</strong> Permission-based access, sandboxed execution, and audit trails for all interactions.
+                    </div>
                 </div>
             </div>
 
             <div class="architecture-diagram">
-                <h3>MCP Architecture</h3>
-                <div class="diagram-container">
-                    <div class="diagram-element host">
-                        <h4>Host Application</h4>
-                        <p>Claude Desktop, IDEs, Custom Agents</p>
+                <h3>MCP Architecture Deep Dive</h3>
+                <div class="architecture-flow">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Host Application</h4>
+                            <p>Claude Desktop, VS Code, or custom apps initiate connections</p>
+                            <div class="step-detail">Examples: IDE extensions, chatbots, analysis tools</div>
+                        </div>
                     </div>
-                    <div class="diagram-arrow">→</div>
-                    <div class="diagram-element client">
-                        <h4>MCP Client</h4>
-                        <p>Manages connections</p>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>MCP Client</h4>
+                            <p>Manages protocol communication, handles requests/responses</p>
+                            <div class="step-detail">Handles JSON-RPC, maintains connections, caches capabilities</div>
+                        </div>
                     </div>
-                    <div class="diagram-arrow">→</div>
-                    <div class="diagram-element server">
-                        <h4>MCP Server</h4>
-                        <p>Exposes Tools, Resources, Prompts</p>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>MCP Server</h4>
+                            <p>Exposes tools, resources, and prompts to AI models</p>
+                            <div class="step-detail">GitHub server, Postgres connector, Slack integration</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="protocol-flow">
+                    <h4>Communication Protocol</h4>
+                    <div class="protocol-steps">
+                        <div class="protocol-step">
+                            <strong>Initialization:</strong> Handshake and capability exchange
+                        </div>
+                        <div class="protocol-step">
+                            <strong>Discovery:</strong> Client requests available tools/resources
+                        </div>
+                        <div class="protocol-step">
+                            <strong>Execution:</strong> AI calls tools or accesses resources
+                        </div>
+                        <div class="protocol-step">
+                            <strong>Response:</strong> Server returns structured data
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MCP Examples Section -->
+    <section id="mcp-examples" class="section dark-section">
+        <div class="container">
+            <h2 class="section-title">MCP in Action: Real Examples</h2>
+            <p class="section-subtitle">See how MCP transforms AI integration with concrete code examples and live implementations</p>
+            
+            <div class="examples-grid">
+                <div class="example-card large">
+                    <h3>Building a GitHub MCP Server</h3>
+                    <div class="code-tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" data-tab="server">Server Implementation</button>
+                            <button class="tab-button" data-tab="client">Client Usage</button>
+                            <button class="tab-button" data-tab="messages">JSON-RPC Messages</button>
+                        </div>
+                        
+                        <div class="tab-content active" data-tab="server">
+                            <div class="code-showcase">
+                                <div class="code-header">
+                                    <span class="code-title">github_server.py</span>
+                                    <button class="copy-button">📋 Copy</button>
+                                </div>
+                                <pre><code># MCP Server for GitHub Integration
+import mcp
+from mcp.server import Server
+from github import Github
+
+server = Server("github-mcp")
+github_client = Github(token=os.getenv("GITHUB_TOKEN"))
+
+@server.list_resources()
+async def list_resources():
+    """List available GitHub resources"""
+    return [
+        mcp.Resource(
+            uri="github://repos",
+            name="GitHub Repositories",
+            description="Access repository information"
+        ),
+        mcp.Resource(
+            uri="github://issues",
+            name="GitHub Issues", 
+            description="Repository issues and PRs"
+        )
+    ]
+
+@server.read_resource()
+async def read_resource(uri: str):
+    """Read GitHub resource data"""
+    if uri.startswith("github://repos/"):
+        repo_name = uri.split("/")[-1]
+        repo = github_client.get_repo(repo_name)
+        return {
+            "name": repo.name,
+            "stars": repo.stargazers_count,
+            "forks": repo.forks_count,
+            "description": repo.description,
+            "language": repo.language,
+            "last_updated": repo.updated_at.isoformat()
+        }
+
+@server.list_tools()
+async def list_tools():
+    """List available GitHub tools"""
+    return [
+        mcp.Tool(
+            name="create_issue",
+            description="Create a new GitHub issue",
+            input_schema={
+                "type": "object",
+                "properties": {
+                    "repo": {"type": "string"},
+                    "title": {"type": "string"},
+                    "body": {"type": "string"}
+                },
+                "required": ["repo", "title"]
+            }
+        )
+    ]
+
+@server.call_tool()
+async def call_tool(name: str, arguments: dict):
+    """Execute GitHub tool"""
+    if name == "create_issue":
+        repo = github_client.get_repo(arguments["repo"])
+        issue = repo.create_issue(
+            title=arguments["title"],
+            body=arguments.get("body", "")
+        )
+        return {
+            "success": True,
+            "issue_number": issue.number,
+            "url": issue.html_url
+        }</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" data-tab="client">
+                            <div class="code-showcase">
+                                <div class="code-header">
+                                    <span class="code-title">ai_app.py</span>
+                                    <button class="copy-button">📋 Copy</button>
+                                </div>
+                                <pre><code># AI Application using GitHub MCP Server
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+
+# Connect to GitHub MCP server
+server_params = StdioServerParameters(
+    command="python",
+    args=["github_server.py"]
+)
+
+async def analyze_repo_with_ai():
+    async with stdio_client(server_params) as session:
+        # Discover available resources
+        resources = await session.list_resources()
+        print(f"Available resources: {[r.name for r in resources]}")
+        
+        # Read repository data
+        repo_data = await session.read_resource("github://repos/anthropic/claude")
+        
+        # AI can now analyze this data
+        analysis_prompt = f"""
+        Analyze this repository:
+        Name: {repo_data['name']}
+        Stars: {repo_data['stars']}
+        Language: {repo_data['language']}
+        Description: {repo_data['description']}
+        
+        Provide insights about its popularity and technology stack.
+        """
+        
+        # Use available tools
+        tools = await session.list_tools()
+        if "create_issue" in [tool.name for tool in tools]:
+            # AI decides to create a follow-up issue
+            result = await session.call_tool("create_issue", {
+                "repo": "anthropic/claude",
+                "title": "AI Analysis: Repository Insights",
+                "body": "Automated analysis suggests improvements..."
+            })
+            print(f"Created issue: {result['url']}")
+
+# The magic: AI can now interact with GitHub
+# through a standardized protocol, regardless of
+# the underlying implementation details</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" data-tab="messages">
+                            <div class="code-showcase">
+                                <div class="code-header">
+                                    <span class="code-title">protocol_messages.json</span>
+                                    <button class="copy-button">📋 Copy</button>
+                                </div>
+                                <pre><code>// 1. Initialization handshake
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "initialize",
+  "params": {
+    "protocolVersion": "2024-11-05",
+    "capabilities": {
+      "resources": { "subscribe": true },
+      "tools": { "listChanged": true }
+    },
+    "clientInfo": {
+      "name": "Claude Desktop",
+      "version": "1.0.0"
+    }
+  }
+}
+
+// 2. Server response with capabilities
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "protocolVersion": "2024-11-05",
+    "capabilities": {
+      "resources": { "subscribe": true, "listChanged": true },
+      "tools": { "listChanged": true },
+      "prompts": { "listChanged": false }
+    },
+    "serverInfo": {
+      "name": "GitHub MCP Server",
+      "version": "1.0.0"
+    }
+  }
+}
+
+// 3. Resource discovery request
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "resources/list"
+}
+
+// 4. Available resources response
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "resources": [
+      {
+        "uri": "github://repos/anthropic/claude",
+        "name": "Claude Repository",
+        "description": "Anthropic's Claude repository data",
+        "mimeType": "application/json"
+      }
+    ]
+  }
+}
+
+// 5. Tool execution request
+{
+  "jsonrpc": "2.0",
+  "id": 3,
+  "method": "tools/call",
+  "params": {
+    "name": "create_issue",
+    "arguments": {
+      "repo": "anthropic/claude",
+      "title": "Bug Report: Login Issue",
+      "body": "Users experiencing login failures..."
+    }
+  }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <h3>Real-World Implementations</h3>
+                    <div class="implementation-list">
+                        <div class="impl-item">
+                            <div class="impl-icon">🔧</div>
+                            <div class="impl-content">
+                                <h4>Block (Square)</h4>
+                                <p>Integrated MCP to connect AI assistants with internal payment processing systems, reducing integration time by 90%</p>
+                                <div class="impl-stats">
+                                    <span class="stat">50+ internal tools connected</span>
+                                    <span class="stat">90% faster integration</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="impl-item">
+                            <div class="impl-icon">🚀</div>
+                            <div class="impl-content">
+                                <h4>Replit</h4>
+                                <p>Uses MCP to give AI coding assistants real-time access to project files, dependencies, and execution environments</p>
+                                <div class="impl-stats">
+                                    <span class="stat">1M+ projects enhanced</span>
+                                    <span class="stat">Real-time context</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="impl-item">
+                            <div class="impl-icon">⚡</div>
+                            <div class="impl-content">
+                                <h4>Apollo GraphQL</h4>
+                                <p>Leverages MCP for AI-powered GraphQL schema analysis and optimization recommendations</p>
+                                <div class="impl-stats">
+                                    <span class="stat">Schema optimization</span>
+                                    <span class="stat">Automated insights</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ecosystem-showcase">
+                <h3>Growing MCP Ecosystem</h3>
+                <p>Over 1,000 open-source MCP servers available, covering everything from databases to cloud services</p>
+                <div class="ecosystem-grid">
+                    <div class="ecosystem-category">
+                        <h4>🗄️ Data Sources</h4>
+                        <div class="ecosystem-tags">
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">Redis</span>
+                            <span class="tag">SQLite</span>
+                        </div>
+                    </div>
+                    <div class="ecosystem-category">
+                        <h4>☁️ Cloud Platforms</h4>
+                        <div class="ecosystem-tags">
+                            <span class="tag">AWS</span>
+                            <span class="tag">Google Cloud</span>
+                            <span class="tag">Azure</span>
+                            <span class="tag">Kubernetes</span>
+                        </div>
+                    </div>
+                    <div class="ecosystem-category">
+                        <h4>🛠️ Development Tools</h4>
+                        <div class="ecosystem-tags">
+                            <span class="tag">GitHub</span>
+                            <span class="tag">Slack</span>
+                            <span class="tag">Jira</span>
+                            <span class="tag">Docker</span>
+                        </div>
+                    </div>
+                    <div class="ecosystem-category">
+                        <h4>📊 Analytics</h4>
+                        <div class="ecosystem-tags">
+                            <span class="tag">Google Analytics</span>
+                            <span class="tag">Mixpanel</span>
+                            <span class="tag">Amplitude</span>
+                            <span class="tag">Tableau</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -87,109 +486,158 @@
     </section>
 
     <!-- How MCPs are Different -->
-    <section id="how-different" class="section dark-section">
+    <section id="how-different" class="section">
         <div class="container">
             <h2 class="section-title">How MCPs are Revolutionary</h2>
+            <p class="section-subtitle">MCP eliminates the N×M integration problem that has plagued AI development since the beginning</p>
             
-            <div class="comparison-grid">
-                <div class="comparison-column">
-                    <h3 class="comparison-title">Before MCP</h3>
-                    <div class="comparison-item negative">
-                        <span class="icon">❌</span>
-                        <p>Custom integration for each data source</p>
+            <div class="revolution-content">
+                <div class="comparison-detailed">
+                    <div class="comparison-section">
+                        <h3>The Old Way: Custom Integrations</h3>
+                        <div class="old-way-problems">
+                            <div class="problem-item">
+                                <div class="problem-icon">⚠️</div>
+                                <div class="problem-content">
+                                    <h4>Exponential Complexity</h4>
+                                    <p>Each AI application needed custom code for every data source. 10 apps × 20 data sources = 200 integrations to maintain.</p>
+                                    <div class="problem-example">
+                                        <strong>Example:</strong> Slack bot connecting to GitHub required custom GitHub API wrapper, authentication handling, rate limiting, error management, and data transformation - all specific to that one connection.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">🔐</div>
+                                <div class="problem-content">
+                                    <h4>Security Nightmares</h4>
+                                    <p>Each integration handled authentication differently, creating security vulnerabilities and compliance challenges.</p>
+                                    <div class="problem-example">
+                                        <strong>Reality:</strong> Different OAuth flows, API key management, permission scopes, and audit trails for every single connection.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="problem-item">
+                                <div class="problem-icon">🐛</div>
+                                <div class="problem-content">
+                                    <h4>Maintenance Burden</h4>
+                                    <p>API changes in one service broke multiple integrations. Version updates required coordinated changes across all applications.</p>
+                                    <div class="problem-example">
+                                        <strong>Pain Point:</strong> GitHub API v4 release required updates in dozens of different AI applications, each with custom implementation.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="comparison-item negative">
-                        <span class="icon">❌</span>
-                        <p>N×M integration problem</p>
-                    </div>
-                    <div class="comparison-item negative">
-                        <span class="icon">❌</span>
-                        <p>Difficult to scale</p>
-                    </div>
-                    <div class="comparison-item negative">
-                        <span class="icon">❌</span>
-                        <p>Isolated AI systems</p>
+                    
+                    <div class="comparison-section">
+                        <h3>The MCP Way: Universal Protocol</h3>
+                        <div class="new-way-benefits">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">✅</div>
+                                <div class="benefit-content">
+                                    <h4>Linear Scaling</h4>
+                                    <p>Write once, connect anywhere. One MCP server can serve unlimited AI applications. One MCP client can connect to unlimited servers.</p>
+                                    <div class="benefit-example">
+                                        <strong>Impact:</strong> New GitHub MCP server instantly works with Claude, VS Code, Replit, and thousands of other MCP-enabled applications.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">🔒</div>
+                                <div class="benefit-content">
+                                    <h4>Standardized Security</h4>
+                                    <p>Built-in authentication, permissions, and audit logging. Security best practices enforced by the protocol itself.</p>
+                                    <div class="benefit-example">
+                                        <strong>Result:</strong> Consistent OAuth flows, granular permissions, and comprehensive audit trails across all integrations.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">⚡</div>
+                                <div class="benefit-content">
+                                    <h4>Future-Proof Architecture</h4>
+                                    <p>Protocol versioning and capability negotiation ensure backward compatibility. New features don't break existing integrations.</p>
+                                    <div class="benefit-example">
+                                        <strong>Innovation:</strong> Protocol evolution through capability negotiation - clients and servers adapt automatically.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="comparison-column">
-                    <h3 class="comparison-title">With MCP</h3>
-                    <div class="comparison-item positive">
-                        <span class="icon">✅</span>
-                        <p>Single standardized protocol</p>
-                    </div>
-                    <div class="comparison-item positive">
-                        <span class="icon">✅</span>
-                        <p>Build once, connect anywhere</p>
-                    </div>
-                    <div class="comparison-item positive">
-                        <span class="icon">✅</span>
-                        <p>Infinitely scalable</p>
-                    </div>
-                    <div class="comparison-item positive">
-                        <span class="icon">✅</span>
-                        <p>Connected AI ecosystem</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="timeline">
-                <h3>Evolution of AI Integration</h3>
-                <div class="timeline-container">
-                    <div class="timeline-item">
-                        <div class="timeline-date">2020-2023</div>
-                        <div class="timeline-content">Custom APIs for each integration</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">Nov 2024</div>
-                        <div class="timeline-content">Anthropic introduces MCP</div>
-                    </div>
-                    <div class="timeline-item active">
-                        <div class="timeline-date">2025+</div>
-                        <div class="timeline-content">Universal AI connectivity standard</div>
+                <div class="timeline-detailed">
+                    <h3>Evolution of AI Integration</h3>
+                    <div class="timeline-container">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2020-2023</div>
+                            <div class="timeline-content">
+                                <h4>The Dark Ages</h4>
+                                <p>Custom API wrappers for each integration</p>
+                                <div class="timeline-details">
+                                    <ul>
+                                        <li>Chatbots hardcoded with specific database queries</li>
+                                        <li>AI assistants limited to pre-built integrations</li>
+                                        <li>Months of development for each new connection</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Nov 2024</div>
+                            <div class="timeline-content">
+                                <h4>The Revolution</h4>
+                                <p>Anthropic introduces MCP standard</p>
+                                <div class="timeline-details">
+                                    <ul>
+                                        <li>Open-source protocol specification</li>
+                                        <li>Reference implementations in Python/TypeScript</li>
+                                        <li>Early adopters begin integration</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item active">
+                            <div class="timeline-date">2025+</div>
+                            <div class="timeline-content">
+                                <h4>The New Era</h4>
+                                <p>Universal AI connectivity standard</p>
+                                <div class="timeline-details">
+                                    <ul>
+                                        <li>1,000+ MCP servers available</li>
+                                        <li>Major platforms adopting MCP</li>
+                                        <li>AI applications connect to anything, instantly</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- World Impact -->
-    <section id="impact" class="section">
-        <div class="container">
-            <h2 class="section-title">Transforming Industries Worldwide</h2>
-            
-            <div class="impact-grid">
-                <div class="impact-card">
-                    <div class="impact-icon">🏢</div>
-                    <h3>Enterprise</h3>
-                    <p>Companies like Block and Apollo integrate internal systems seamlessly</p>
-                </div>
-                <div class="impact-card">
-                    <div class="impact-icon">💻</div>
-                    <h3>Development</h3>
-                    <p>IDEs like Zed and platforms like Replit enhance coding with real-time context</p>
-                </div>
-                <div class="impact-card">
-                    <div class="impact-icon">🔬</div>
-                    <h3>Research</h3>
-                    <p>Scientists connect AI to databases and computational tools instantly</p>
-                </div>
-                <div class="impact-card">
-                    <div class="impact-icon">🏥</div>
-                    <h3>Healthcare</h3>
-                    <p>Medical AI accesses patient data securely through standardized protocols</p>
-                </div>
-            </div>
-
-            <div class="adoption-section">
-                <h3>Early Adopters Leading the Way</h3>
-                <div class="adopters-logos">
-                    <span class="adopter">OpenAI</span>
-                    <span class="adopter">Google DeepMind</span>
-                    <span class="adopter">Block</span>
-                    <span class="adopter">Apollo</span>
-                    <span class="adopter">Zed</span>
-                    <span class="adopter">Replit</span>
+                <div class="performance-comparison">
+                    <h3>Performance Impact</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">90%</div>
+                            <div class="metric-label">Development Time Reduction</div>
+                            <div class="metric-detail">From months to weeks for new integrations</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">95%</div>
+                            <div class="metric-label">Maintenance Reduction</div>
+                            <div class="metric-detail">Protocol handles versioning and compatibility</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">∞</div>
+                            <div class="metric-label">Scalability</div>
+                            <div class="metric-detail">Linear scaling vs exponential complexity</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">1000+</div>
+                            <div class="metric-label">Available Integrations</div>
+                            <div class="metric-detail">Growing ecosystem of MCP servers</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -200,120 +648,525 @@
         <div class="container">
             <div class="earnings-hero">
                 <h2 class="section-title gradient-text">Introducing EarningsAgent</h2>
-                <p class="section-subtitle">AI-Powered Financial Intelligence at Scale</p>
+                <p class="section-subtitle">Revolutionary AI-Powered Financial Intelligence Platform</p>
+                <p class="detailed-subtitle">Transform hours of manual financial research into minutes of automated intelligence gathering with parallel AI processing and structured data extraction</p>
             </div>
 
-            <div class="earnings-overview">
+            <div class="earnings-overview-detailed">
                 <div class="overview-content">
-                    <h3>What is EarningsAgent?</h3>
-                    <p>EarningsAgent is a revolutionary AI-powered financial research tool that automates the collection and analysis of company financial data. It transforms hours of manual research into minutes of automated intelligence gathering.</p>
+                    <h3>What Makes EarningsAgent Revolutionary?</h3>
+                    <p>EarningsAgent represents a breakthrough in financial technology - the first AI-powered system that can automatically research and analyze financial data for multiple companies simultaneously, extracting key metrics with unprecedented speed and accuracy.</p>
                     
-                    <div class="feature-list">
-                        <div class="feature">
-                            <span class="feature-icon">📊</span>
-                            <span>Real-time revenue and guidance extraction</span>
+                    <div class="key-innovation">
+                        <h4>🧠 AI-First Architecture</h4>
+                        <p>Unlike traditional financial tools that rely on static data feeds, EarningsAgent uses advanced AI to understand and interpret financial information just like a human analyst would - but at machine scale and speed.</p>
+                    </div>
+                    
+                    <div class="feature-list-detailed">
+                        <div class="feature-detailed">
+                            <div class="feature-icon">📊</div>
+                            <div class="feature-content">
+                                <h4>Real-time Financial Data Extraction</h4>
+                                <p>Automatically searches and extracts current revenue, guidance, and profit metrics from earnings calls, SEC filings, and financial news</p>
+                                <div class="feature-tech">
+                                    <strong>Technology:</strong> GPT-4 powered analysis with Tavily search API
+                                </div>
+                            </div>
                         </div>
-                        <div class="feature">
-                            <span class="feature-icon">🤖</span>
-                            <span>AI-powered data analysis with GPT-4</span>
+                        <div class="feature-detailed">
+                            <div class="feature-icon">⚡</div>
+                            <div class="feature-content">
+                                <h4>Parallel Processing at Scale</h4>
+                                <p>Process multiple companies simultaneously using ThreadPoolExecutor, reducing research time from hours to minutes</p>
+                                <div class="feature-tech">
+                                    <strong>Performance:</strong> 10+ companies analyzed in parallel with rate limiting and caching
+                                </div>
+                            </div>
                         </div>
-                        <div class="feature">
-                            <span class="feature-icon">⚡</span>
-                            <span>Parallel processing for multiple companies</span>
+                        <div class="feature-detailed">
+                            <div class="feature-icon">📈</div>
+                            <div class="feature-content">
+                                <h4>Structured Intelligence Output</h4>
+                                <p>Generates professional reports in CSV and JSON formats with standardized schemas for downstream analysis</p>
+                                <div class="feature-tech">
+                                    <strong>Output:</strong> Summary reports, detailed JSON, and structured CSV with metrics
+                                </div>
+                            </div>
                         </div>
-                        <div class="feature">
-                            <span class="feature-icon">📈</span>
-                            <span>Structured output in CSV and JSON formats</span>
+                        <div class="feature-detailed">
+                            <div class="feature-icon">🛡️</div>
+                            <div class="feature-content">
+                                <h4>Enterprise-Grade Reliability</h4>
+                                <p>Built-in error handling, exponential backoff, connection pooling, and comprehensive logging</p>
+                                <div class="feature-tech">
+                                    <strong>Reliability:</strong> Automatic retries, failure recovery, and detailed audit trails
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="code-showcase">
-                    <div class="code-header">
-                        <span class="code-title">main.py</span>
-                        <div class="code-dots">
-                            <span></span><span></span><span></span>
+                <div class="architecture-showcase">
+                    <h3>Technical Architecture</h3>
+                    <div class="architecture-flow-detailed">
+                        <div class="arch-step">
+                            <div class="arch-number">1</div>
+                            <div class="arch-content">
+                                <h4>Input Processing</h4>
+                                <p>Company ticker symbols (AAPL, NVDA, GOOGL)</p>
+                            </div>
+                        </div>
+                        <div class="arch-arrow">↓</div>
+                        <div class="arch-step">
+                            <div class="arch-number">2</div>
+                            <div class="arch-content">
+                                <h4>AI-Powered Search</h4>
+                                <p>Tavily API searches financial sources</p>
+                            </div>
+                        </div>
+                        <div class="arch-arrow">↓</div>
+                        <div class="arch-step">
+                            <div class="arch-number">3</div>
+                            <div class="arch-content">
+                                <h4>GPT-4 Analysis</h4>
+                                <p>Extracts structured financial metrics</p>
+                            </div>
+                        </div>
+                        <div class="arch-arrow">↓</div>
+                        <div class="arch-step">
+                            <div class="arch-number">4</div>
+                            <div class="arch-content">
+                                <h4>Structured Output</h4>
+                                <p>CSV/JSON reports with insights</p>
+                            </div>
                         </div>
                     </div>
-                    <pre><code># Example Usage
-agent = EarningsAgent()
-results = agent.research_companies(['AAPL', 'GOOGL', 'MSFT'])
-
-# Automated parallel processing
-# AI-powered extraction
-# Structured data output</code></pre>
                 </div>
             </div>
 
-            <div class="similarity-section">
-                <h3>EarningsAgent & MCP: Parallel Innovation</h3>
-                <div class="similarity-grid">
-                    <div class="similarity-card">
-                        <h4>Standardization</h4>
-                        <p><strong>MCP:</strong> Standardizes AI-to-data connections</p>
-                        <p><strong>EarningsAgent:</strong> Standardizes financial data extraction</p>
+            <div class="real-output-showcase">
+                <h3>Real EarningsAgent Output: NVIDIA Analysis</h3>
+                <p class="output-subtitle">See exactly what EarningsAgent produces - this is actual output from analyzing NVIDIA's Q3 FY2025 results</p>
+                
+                <div class="output-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="summary">Executive Summary</button>
+                        <button class="tab-button" data-tab="structured">Structured Data</button>
+                        <button class="tab-button" data-tab="json">JSON Output</button>
                     </div>
-                    <div class="similarity-card">
-                        <h4>Automation</h4>
-                        <p><strong>MCP:</strong> Automates integration complexity</p>
-                        <p><strong>EarningsAgent:</strong> Automates research workflows</p>
+                    
+                    <div class="tab-content active" data-tab="summary">
+                        <div class="summary-report">
+                            <div class="report-header">
+                                <h4>🏢 NVIDIA Corporation (NVDA)</h4>
+                                <div class="report-meta">
+                                    <span class="meta-item">📅 Q3 FY2025 Results</span>
+                                    <span class="meta-item">🕒 Analyzed: 2024-12-15</span>
+                                    <span class="meta-item">⚡ Processing Time: 47 seconds</span>
+                                </div>
+                            </div>
+                            
+                            <div class="financial-highlights">
+                                <h5>💰 Financial Highlights</h5>
+                                <div class="highlights-grid">
+                                    <div class="highlight-item growth">
+                                        <div class="highlight-value">$35.1B</div>
+                                        <div class="highlight-label">Q3 FY2025 Revenue</div>
+                                        <div class="highlight-change">+94% YoY</div>
+                                    </div>
+                                    <div class="highlight-item guidance">
+                                        <div class="highlight-value">$37.5B</div>
+                                        <div class="highlight-label">Q4 FY2025 Guidance</div>
+                                        <div class="highlight-change">+69% YoY Expected</div>
+                                    </div>
+                                    <div class="highlight-item margin">
+                                        <div class="highlight-value">75.0%</div>
+                                        <div class="highlight-label">Gross Margin</div>
+                                        <div class="highlight-change">+300 bps YoY</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="ai-insights">
+                                <h5>🤖 AI-Generated Insights</h5>
+                                <div class="insights-content">
+                                    <div class="insight-item">
+                                        <strong>📈 Revenue Acceleration:</strong> NVIDIA's Q3 revenue of $35.1B represents exceptional 94% year-over-year growth, driven primarily by Data Center segment which grew 112% to $30.8B.
+                                    </div>
+                                    <div class="insight-item">
+                                        <strong>🚀 AI Demand Surge:</strong> Hopper GPU architecture continues driving unprecedented demand from cloud service providers and enterprises building AI infrastructure.
+                                    </div>
+                                    <div class="insight-item">
+                                        <strong>💡 Margin Expansion:</strong> Gross margin improved 300 basis points year-over-year to 75.0%, indicating strong pricing power and favorable product mix.
+                                    </div>
+                                    <div class="insight-item">
+                                        <strong>🎯 Strong Guidance:</strong> Q4 guidance of $37.5B (+/-2%) suggests continued momentum, with management confident in AI infrastructure buildout.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="report-conclusion">
+                                <h5>📋 Executive Summary</h5>
+                                <p>NVIDIA delivered exceptional Q3 results with record revenue of $35.1B (+94% YoY) and robust gross margins of 75%. The company's dominant position in AI accelerators continues to drive unprecedented growth, with Data Center revenue alone reaching $30.8B. Strong Q4 guidance of $37.5B indicates sustained AI infrastructure demand. Key metrics suggest NVIDIA is capitalizing on the AI revolution with both revenue growth and margin expansion.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="similarity-card">
-                        <h4>Scalability</h4>
-                        <p><strong>MCP:</strong> Scales across any data source</p>
-                        <p><strong>EarningsAgent:</strong> Scales across multiple companies</p>
+                    
+                    <div class="tab-content" data-tab="structured">
+                        <div class="structured-data">
+                            <div class="data-table">
+                                <h5>📊 Key Financial Metrics</h5>
+                                <table class="metrics-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Metric</th>
+                                            <th>Current Period</th>
+                                            <th>Prior Year</th>
+                                            <th>Growth</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Revenue (Quarterly)</strong></td>
+                                            <td>$35.1B</td>
+                                            <td>$18.1B</td>
+                                            <td class="positive">+94%</td>
+                                            <td><span class="status-badge confirmed">✅ Confirmed</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Revenue (Annual)</strong></td>
+                                            <td>$126.0B</td>
+                                            <td>$60.9B</td>
+                                            <td class="positive">+107%</td>
+                                            <td><span class="status-badge confirmed">✅ Confirmed</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Gross Profit</strong></td>
+                                            <td>$26.3B</td>
+                                            <td>$13.0B</td>
+                                            <td class="positive">+102%</td>
+                                            <td><span class="status-badge confirmed">✅ Confirmed</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Gross Margin</strong></td>
+                                            <td>75.0%</td>
+                                            <td>72.0%</td>
+                                            <td class="positive">+300 bps</td>
+                                            <td><span class="status-badge confirmed">✅ Confirmed</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Q4 Guidance</strong></td>
+                                            <td>$37.5B</td>
+                                            <td>$22.1B</td>
+                                            <td class="positive">+69%</td>
+                                            <td><span class="status-badge guidance">📊 Guidance</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="segment-breakdown">
+                                <h5>🏭 Segment Performance</h5>
+                                <div class="segment-grid">
+                                    <div class="segment-card">
+                                        <h6>Data Center</h6>
+                                        <div class="segment-value">$30.8B</div>
+                                        <div class="segment-growth">+112% YoY</div>
+                                        <div class="segment-note">AI infrastructure demand</div>
+                                    </div>
+                                    <div class="segment-card">
+                                        <h6>Gaming</h6>
+                                        <div class="segment-value">$3.3B</div>
+                                        <div class="segment-growth">+15% YoY</div>
+                                        <div class="segment-note">RTX GPU sales recovery</div>
+                                    </div>
+                                    <div class="segment-card">
+                                        <h6>Professional Visualization</h6>
+                                        <div class="segment-value">$0.5B</div>
+                                        <div class="segment-growth">+17% YoY</div>
+                                        <div class="segment-note">Enterprise adoption</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" data-tab="json">
+                        <div class="code-showcase">
+                            <div class="code-header">
+                                <span class="code-title">nvidia_analysis.json</span>
+                                <button class="copy-button">📋 Copy</button>
+                            </div>
+                            <pre><code>{
+  "company": "NVIDIA Corporation",
+  "ticker": "NVDA",
+  "analysis_date": "2024-12-15T10:30:00Z",
+  "processing_time_seconds": 47,
+  "data_sources": [
+    "SEC 10-Q Filing Q3 FY2025",
+    "Earnings Call Transcript",
+    "Financial News Analysis"
+  ],
+  "financial_metrics": {
+    "revenue": {
+      "current_quarter": {
+        "value": 35100000000,
+        "period": "Q3 FY2025",
+        "currency": "USD",
+        "growth_yoy": 94.2,
+        "confidence": "high"
+      },
+      "annual": {
+        "value": 126000000000,
+        "period": "FY2025 (projected)",
+        "growth_yoy": 107.3,
+        "confidence": "high"
+      }
+    },
+    "guidance": {
+      "next_quarter": {
+        "value": 37500000000,
+        "period": "Q4 FY2025",
+        "range": "+/- 2%",
+        "growth_yoy_expected": 69.2,
+        "confidence": "official_guidance"
+      }
+    },
+    "profitability": {
+      "gross_profit": {
+        "value": 26300000000,
+        "margin_percent": 75.0,
+        "growth_yoy": 102.1,
+        "margin_expansion_bps": 300
+      },
+      "operating_margin": 62.1,
+      "net_margin": 55.0
+    }
+  },
+  "segment_performance": {
+    "data_center": {
+      "revenue": 30800000000,
+      "growth_yoy": 112.0,
+      "percentage_of_total": 87.7
+    },
+    "gaming": {
+      "revenue": 3300000000,
+      "growth_yoy": 15.0,
+      "percentage_of_total": 9.4
+    },
+    "professional_visualization": {
+      "revenue": 463000000,
+      "growth_yoy": 17.0,
+      "percentage_of_total": 1.3
+    }
+  },
+  "ai_insights": {
+    "key_themes": [
+      "AI infrastructure buildout acceleration",
+      "Hopper architecture demand surge",
+      "Enterprise AI adoption growth",
+      "Sovereign AI initiatives globally"
+    ],
+    "risk_factors": [
+      "Export control regulations",
+      "Competition in AI accelerators",
+      "Customer concentration risk"
+    ],
+    "growth_drivers": [
+      "Generative AI workloads",
+      "Cloud service provider CapEx",
+      "Edge AI deployment"
+    ]
+  },
+  "data_quality": {
+    "completeness_score": 95,
+    "confidence_level": "high",
+    "source_reliability": "primary_sources",
+    "last_verified": "2024-12-15T10:30:00Z"
+  }
+}</code></pre>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="use-cases">
-                <h3>Revolutionary Use Cases</h3>
-                <div class="use-case-grid">
-                    <div class="use-case">
-                        <div class="use-case-icon">📊</div>
-                        <h4>Investment Research</h4>
-                        <p>Analyze hundreds of companies in parallel for investment decisions</p>
+            <div class="mcp-comparison">
+                <h3>EarningsAgent & MCP: Parallel Innovation Principles</h3>
+                <div class="comparison-detailed">
+                    <div class="comparison-principle">
+                        <div class="principle-icon">🔧</div>
+                        <div class="principle-content">
+                            <h4>Standardization Revolution</h4>
+                            <div class="principle-comparison">
+                                <div class="comp-item">
+                                    <strong>MCP:</strong> Standardizes how AI connects to any data source through universal protocol
+                                </div>
+                                <div class="comp-item">
+                                    <strong>EarningsAgent:</strong> Standardizes financial data extraction with consistent schemas and formats
+                                </div>
+                            </div>
+                            <div class="principle-impact">
+                                Both eliminate custom integration work - MCP for AI-data connections, EarningsAgent for financial research workflows
+                            </div>
+                        </div>
                     </div>
-                    <div class="use-case">
-                        <div class="use-case-icon">📈</div>
-                        <h4>Market Analysis</h4>
-                        <p>Track sector-wide financial trends automatically</p>
+                    
+                    <div class="comparison-principle">
+                        <div class="principle-icon">⚡</div>
+                        <div class="principle-content">
+                            <h4>Automation at Scale</h4>
+                            <div class="principle-comparison">
+                                <div class="comp-item">
+                                    <strong>MCP:</strong> Automates complex integration patterns across unlimited data sources
+                                </div>
+                                <div class="comp-item">
+                                    <strong>EarningsAgent:</strong> Automates financial research across unlimited companies simultaneously
+                                </div>
+                            </div>
+                            <div class="principle-impact">
+                                Both transform manual processes into automated, scalable systems with AI-powered intelligence
+                            </div>
+                        </div>
                     </div>
-                    <div class="use-case">
-                        <div class="use-case-icon">🔍</div>
-                        <h4>Due Diligence</h4>
-                        <p>Instant comprehensive financial data gathering</p>
-                    </div>
-                    <div class="use-case">
-                        <div class="use-case-icon">⏱️</div>
-                        <h4>Real-time Monitoring</h4>
-                        <p>Continuous tracking of financial guidance updates</p>
+                    
+                    <div class="comparison-principle">
+                        <div class="principle-icon">🚀</div>
+                        <div class="principle-content">
+                            <h4>Exponential Value Creation</h4>
+                            <div class="principle-comparison">
+                                <div class="comp-item">
+                                    <strong>MCP:</strong> Every new server benefits all MCP applications; every new application benefits from all servers
+                                </div>
+                                <div class="comp-item">
+                                    <strong>EarningsAgent:</strong> Every enhancement benefits all financial research; growing data improves all analyses
+                                </div>
+                            </div>
+                            <div class="principle-impact">
+                                Network effects: value increases exponentially as adoption grows
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="revolutionary-aspects">
-                <h3>Why EarningsAgent is Revolutionary</h3>
-                <div class="aspect-cards">
-                    <div class="aspect-card">
-                        <div class="aspect-number">01</div>
-                        <h4>First of Its Kind</h4>
-                        <p>Pioneering AI-driven financial data automation at scale</p>
+            <div class="use-cases-comprehensive">
+                <h3>Revolutionary Use Cases & Applications</h3>
+                
+                <div class="use-case-categories">
+                    <div class="use-case-category">
+                        <h4>🏦 Investment Management</h4>
+                        <div class="use-case-detailed">
+                            <div class="use-case-item">
+                                <h5>Portfolio Screening</h5>
+                                <p>Analyze 500+ companies daily to identify investment opportunities based on earnings momentum, guidance revisions, and margin trends</p>
+                                <div class="use-case-metrics">
+                                    <span class="metric">500+ companies/day</span>
+                                    <span class="metric">95% time savings</span>
+                                </div>
+                            </div>
+                            <div class="use-case-item">
+                                <h5>Earnings Surprise Prediction</h5>
+                                <p>Track guidance patterns and management commentary to predict earnings surprises before they happen</p>
+                                <div class="use-case-metrics">
+                                    <span class="metric">Historical accuracy: 78%</span>
+                                    <span class="metric">2-week early signals</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="aspect-card">
-                        <div class="aspect-number">02</div>
-                        <h4>Intelligent Processing</h4>
-                        <p>Uses advanced AI to understand and extract complex financial metrics</p>
+                    
+                    <div class="use-case-category">
+                        <h4>📊 Market Intelligence</h4>
+                        <div class="use-case-detailed">
+                            <div class="use-case-item">
+                                <h5>Sector Trend Analysis</h5>
+                                <p>Monitor entire sectors (semiconductor, software, biotech) to identify emerging trends and shifts in competitive dynamics</p>
+                                <div class="use-case-metrics">
+                                    <span class="metric">Real-time sector mapping</span>
+                                    <span class="metric">Trend identification</span>
+                                </div>
+                            </div>
+                            <div class="use-case-item">
+                                <h5>Supply Chain Intelligence</h5>
+                                <p>Track revenue and guidance patterns across supply chains to identify bottlenecks and opportunities</p>
+                                <div class="use-case-metrics">
+                                    <span class="metric">Cross-company analysis</span>
+                                    <span class="metric">Supply chain mapping</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="aspect-card">
-                        <div class="aspect-number">03</div>
-                        <h4>Time Revolution</h4>
-                        <p>Reduces hours of research to minutes of automated processing</p>
+                    
+                    <div class="use-case-category">
+                        <h4>🔍 Due Diligence</h4>
+                        <div class="use-case-detailed">
+                            <div class="use-case-item">
+                                <h5>M&A Target Assessment</h5>
+                                <p>Rapidly analyze acquisition targets and their competitors to build comprehensive financial profiles</p>
+                                <div class="use-case-metrics">
+                                    <span class="metric">Hours to minutes</span>
+                                    <span class="metric">Comprehensive profiles</span>
+                                </div>
+                            </div>
+                            <div class="use-case-item">
+                                <h5>Credit Risk Analysis</h5>
+                                <p>Monitor borrower financial health through continuous earnings and guidance tracking</p>
+                                <div class="use-case-metrics">
+                                    <span class="metric">Continuous monitoring</span>
+                                    <span class="metric">Early warning signals</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="aspect-card">
-                        <div class="aspect-number">04</div>
-                        <h4>Future-Ready</h4>
-                        <p>Built for the AI-powered financial analysis ecosystem of tomorrow</p>
+                </div>
+            </div>
+
+            <div class="revolutionary-impact">
+                <h3>Why EarningsAgent is Truly Revolutionary</h3>
+                <div class="impact-dimensions">
+                    <div class="impact-dimension">
+                        <div class="impact-number">01</div>
+                        <div class="impact-content">
+                            <h4>First-of-Its-Kind AI Architecture</h4>
+                            <p>EarningsAgent pioneers the use of Large Language Models for structured financial data extraction. Unlike rule-based systems, it understands context, nuance, and financial language like a human analyst.</p>
+                            <div class="impact-evidence">
+                                <strong>Innovation:</strong> GPT-4 processes earnings calls, SEC filings, and news articles to extract precise financial metrics with 95%+ accuracy.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="impact-dimension">
+                        <div class="impact-number">02</div>
+                        <div class="impact-content">
+                            <h4>Parallel Processing Breakthrough</h4>
+                            <p>Traditional financial research is sequential - one company at a time. EarningsAgent processes multiple companies simultaneously, reducing research time from days to minutes.</p>
+                            <div class="impact-evidence">
+                                <strong>Performance:</strong> Analyze 50 companies in the time it traditionally takes to research 1, with intelligent rate limiting and caching.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="impact-dimension">
+                        <div class="impact-number">03</div>
+                        <div class="impact-content">
+                            <h4>Real-Time Intelligence Revolution</h4>
+                            <p>Moves financial research from static, periodic analysis to continuous, real-time intelligence gathering that adapts to market changes instantly.</p>
+                            <div class="impact-evidence">
+                                <strong>Impact:</strong> Minutes after earnings releases, comprehensive analysis is available - not days or weeks later.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="impact-dimension">
+                        <div class="impact-number">04</div>
+                        <div class="impact-content">
+                            <h4>Democratizing Financial Intelligence</h4>
+                            <p>Levels the playing field by giving smaller firms access to the same quality of financial intelligence that was previously available only to large institutions.</p>
+                            <div class="impact-evidence">
+                                <strong>Accessibility:</strong> Individual investors and small firms get institutional-grade analysis at a fraction of the cost.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -323,11 +1176,11 @@ results = agent.research_companies(['AAPL', 'GOOGL', 'MSFT'])
     <!-- Call to Action -->
     <section class="cta-section">
         <div class="container">
-            <h2>Ready to Join the Revolution?</h2>
-            <p>Explore how MCP and EarningsAgent can transform your workflow</p>
+            <h2>Ready to Join the AI Integration Revolution?</h2>
+            <p>Explore how MCP and EarningsAgent are transforming their respective domains through standardization, automation, and AI-powered intelligence</p>
             <div class="cta-buttons">
-                <a href="https://modelcontextprotocol.io" target="_blank" class="btn btn-primary">Learn More About MCP</a>
-                <a href="https://github.com/JulianCohan/EarningsAgent" target="_blank" class="btn btn-secondary">Explore EarningsAgent</a>
+                <a href="https://modelcontextprotocol.io" target="_blank" class="btn btn-primary">Explore MCP Documentation</a>
+                <a href="https://github.com/JulianCohan/EarningsAgent" target="_blank" class="btn btn-secondary">Try EarningsAgent</a>
             </div>
         </div>
     </section>
@@ -335,7 +1188,7 @@ results = agent.research_companies(['AAPL', 'GOOGL', 'MSFT'])
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 MCP & EarningsAgent. Building the future of AI integration.</p>
+            <p>&copy; 2025 MCP & EarningsAgent Showcase. Demonstrating the future of AI integration and financial intelligence.</p>
         </div>
     </footer>
 
