@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initLoadingAnimation();
     initHoverEffects();
     initTypingAnimation();
+    initThemeToggle();
+    initMobileMenu();
+    initBackToTop();
+    initLazyLoading();
+    initCodePlayground();
     
     console.log('🚀 MCP & EarningsAgent website fully loaded!');
 });
@@ -617,6 +622,299 @@ function throttle(func, limit) {
     }
 }
 
+// Theme Toggle Functionality
+function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.querySelector('.theme-icon');
+    
+    // Check for saved theme preference or default to 'dark'
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+    
+    themeToggle.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+        
+        // Add transition effect
+        themeIcon.style.transform = 'rotate(360deg)';
+        setTimeout(() => {
+            themeIcon.style.transform = 'rotate(0deg)';
+        }, 300);
+    });
+    
+    function updateThemeIcon(theme) {
+        themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+}
+
+// Mobile Menu Functionality
+function initMobileMenu() {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    mobileMenuToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        if (navLinks.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close mobile menu when clicking on a link
+    const navLinksElements = navLinks.querySelectorAll('a');
+    navLinksElements.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+    
+    // Close mobile menu on window resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            mobileMenuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+// Back to Top Button
+function initBackToTop() {
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', throttle(() => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    }, 100));
+    
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// Lazy Loading for Performance
+function initLazyLoading() {
+    if ('IntersectionObserver' in window) {
+        const lazyElements = document.querySelectorAll('[data-lazy]');
+        
+        const lazyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    
+                    if (element.dataset.lazy === 'image') {
+                        element.src = element.dataset.src;
+                        element.classList.remove('lazy');
+                    }
+                    
+                    if (element.dataset.lazy === 'component') {
+                        element.classList.add('loaded');
+                    }
+                    
+                    lazyObserver.unobserve(element);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        lazyElements.forEach(element => {
+            lazyObserver.observe(element);
+        });
+    }
+}
+
+// Enhanced Code Playground
+function initCodePlayground() {
+    // Add run buttons to code examples
+    const codeBlocks = document.querySelectorAll('.code-showcase');
+    
+    codeBlocks.forEach(block => {
+        const codeElement = block.querySelector('code');
+        const header = block.querySelector('.code-header');
+        
+        if (codeElement && header && codeElement.textContent.includes('python')) {
+            const runButton = document.createElement('button');
+            runButton.className = 'run-button';
+            runButton.innerHTML = '▶️ Run';
+            runButton.addEventListener('click', () => simulateCodeExecution(codeElement, runButton));
+            header.appendChild(runButton);
+        }
+    });
+}
+
+function simulateCodeExecution(codeElement, button) {
+    const originalText = button.innerHTML;
+    button.innerHTML = '⏳ Running...';
+    button.disabled = true;
+    
+    // Create output area
+    let outputArea = codeElement.parentElement.querySelector('.code-output');
+    if (!outputArea) {
+        outputArea = document.createElement('div');
+        outputArea.className = 'code-output';
+        codeElement.parentElement.appendChild(outputArea);
+    }
+    
+    // Simulate execution time
+    setTimeout(() => {
+        outputArea.innerHTML = `
+            <div class="output-header">Output:</div>
+            <div class="output-content">
+✅ MCP Server initialized successfully
+📡 Listening on stdio...
+🔗 Connected to GitHub API
+📊 Ready to handle requests
+            </div>
+        `;
+        
+        button.innerHTML = originalText;
+        button.disabled = false;
+        
+        // Add output styling if not exists
+        if (!document.querySelector('.output-styles')) {
+            const style = document.createElement('style');
+            style.className = 'output-styles';
+            style.textContent = `
+                .code-output {
+                    background: var(--bg-secondary);
+                    border-top: 1px solid var(--border-color);
+                    border-radius: 0 0 0.5rem 0.5rem;
+                    padding: 1rem;
+                    font-family: 'JetBrains Mono', monospace;
+                    font-size: 0.85rem;
+                }
+                .output-header {
+                    color: var(--accent-green);
+                    font-weight: 600;
+                    margin-bottom: 0.5rem;
+                }
+                .output-content {
+                    color: var(--text-secondary);
+                    line-height: 1.5;
+                    white-space: pre-line;
+                }
+                .run-button {
+                    background: var(--accent-green);
+                    color: white;
+                    border: none;
+                    padding: 0.5rem 1rem;
+                    border-radius: 0.25rem;
+                    cursor: pointer;
+                    font-size: 0.8rem;
+                    transition: all 0.3s ease;
+                    margin-left: 1rem;
+                }
+                .run-button:hover:not(:disabled) {
+                    background: var(--accent-blue);
+                    transform: translateY(-1px);
+                }
+                .run-button:disabled {
+                    opacity: 0.6;
+                    cursor: not-allowed;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }, 2000);
+}
+
+// Enhanced Performance Monitoring
+function initAdvancedPerformanceMonitoring() {
+    // Monitor Core Web Vitals
+    if ('performance' in window && 'PerformanceObserver' in window) {
+        // Largest Contentful Paint (LCP)
+        new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+            const lastEntry = entries[entries.length - 1];
+            console.log('LCP:', Math.round(lastEntry.startTime), 'ms');
+        }).observe({ type: 'largest-contentful-paint', buffered: true });
+        
+        // First Input Delay (FID)
+        new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+            entries.forEach(entry => {
+                console.log('FID:', Math.round(entry.processingStart - entry.startTime), 'ms');
+            });
+        }).observe({ type: 'first-input', buffered: true });
+        
+        // Cumulative Layout Shift (CLS)
+        let clsValue = 0;
+        new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+            entries.forEach(entry => {
+                if (!entry.hadRecentInput) {
+                    clsValue += entry.value;
+                }
+            });
+            console.log('CLS:', clsValue.toFixed(4));
+        }).observe({ type: 'layout-shift', buffered: true });
+    }
+}
+
+// Initialize advanced performance monitoring
+initAdvancedPerformanceMonitoring();
+
+// Enhanced Accessibility Features
+function initAccessibilityFeatures() {
+    // Skip to main content link
+    const skipLink = document.createElement('a');
+    skipLink.href = '#home';
+    skipLink.textContent = 'Skip to main content';
+    skipLink.className = 'skip-link';
+    skipLink.style.cssText = `
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: var(--accent-blue);
+        color: white;
+        padding: 8px;
+        text-decoration: none;
+        border-radius: 4px;
+        z-index: 10000;
+        transition: top 0.3s;
+    `;
+    
+    skipLink.addEventListener('focus', () => {
+        skipLink.style.top = '6px';
+    });
+    
+    skipLink.addEventListener('blur', () => {
+        skipLink.style.top = '-40px';
+    });
+    
+    document.body.insertBefore(skipLink, document.body.firstChild);
+    
+    // Keyboard navigation enhancement
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            document.body.classList.add('keyboard-navigation');
+        }
+    });
+    
+    document.addEventListener('mousedown', () => {
+        document.body.classList.remove('keyboard-navigation');
+    });
+}
+
+// Initialize accessibility features
+initAccessibilityFeatures();
+
 // Final console message
 console.log(`
 🚀 MCP & EarningsAgent Website Loaded Successfully!
@@ -628,6 +926,13 @@ Features initialized:
 ✅ Responsive navigation
 ✅ Performance optimizations
 ✅ Keyboard shortcuts (Ctrl+C to copy code)
+✅ Dark/Light mode toggle
+✅ Mobile-responsive menu
+✅ Back to top button
+✅ Lazy loading
+✅ Code playground simulation
+✅ Advanced performance monitoring
+✅ Enhanced accessibility
 
 Built with ❤️ to showcase the future of AI integration
 `);

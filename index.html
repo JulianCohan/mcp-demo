@@ -3,11 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover Model Context Protocol (MCP) and EarningsAgent - Revolutionary AI integration standards that eliminate the N×M integration problem. See real examples, technical deep-dives, and live demonstrations.">
+    <meta name="keywords" content="MCP, Model Context Protocol, AI integration, EarningsAgent, financial AI, API standardization, AI connectivity">
+    <meta name="author" content="MCP & EarningsAgent Showcase">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="MCP & EarningsAgent - The Future of AI Integration">
+    <meta property="og:description" content="Revolutionary AI integration standards that eliminate complexity. See MCP protocol examples and EarningsAgent financial intelligence in action.">
+    <meta property="og:image" content="">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="">
+    <meta property="twitter:title" content="MCP & EarningsAgent - The Future of AI Integration">
+    <meta property="twitter:description" content="Revolutionary AI integration standards that eliminate complexity. See MCP protocol examples and EarningsAgent financial intelligence in action.">
+    <meta property="twitter:image" content="">
+    
     <title>MCP & EarningsAgent - The Future of AI Integration</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    
+    <!-- Critical CSS will be inlined here -->
+    <style>
+        /* Critical above-the-fold styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #ffffff; overflow-x: hidden; }
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 0; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; padding: 0 2rem; }
+        .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem; text-align: center; }
+    </style>
+    
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Font loading optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Performance and analytics -->
+    <script>
+        // Performance monitoring
+        window.performance.mark('head-end');
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -20,7 +63,15 @@
                 <a href="#mcp-examples">Examples</a>
                 <a href="#how-different">How It's Different</a>
                 <a href="#earnings-agent">EarningsAgent</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
             </div>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -1188,10 +1239,44 @@ async def analyze_repo_with_ai():
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 MCP & EarningsAgent Showcase. Demonstrating the future of AI integration and financial intelligence.</p>
+            <div class="footer-content">
+                <p>&copy; 2025 MCP & EarningsAgent Showcase. Demonstrating the future of AI integration and financial intelligence.</p>
+                <div class="footer-links">
+                    <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">MCP Docs</a>
+                    <a href="https://github.com/JulianCohan/EarningsAgent" target="_blank" rel="noopener">EarningsAgent</a>
+                    <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Performance measurement -->
+    <script>
+        // Critical performance metrics
+        window.addEventListener('load', function() {
+            window.performance.mark('page-loaded');
+            if ('performance' in window && 'getEntriesByType' in performance) {
+                const navTiming = performance.getEntriesByType('navigation')[0];
+                const loadTime = navTiming.loadEventEnd - navTiming.loadEventStart;
+                console.log(`⚡ Page load time: ${loadTime}ms`);
+            }
+        });
+    </script>
+    
+    <!-- Load main script with defer for better performance -->
+    <script src="script.js" defer></script>
+    
+    <!-- Service Worker for caching (optional) -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    console.log('SW registered: ', registration);
+                }).catch(function(registrationError) {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
+    </script>
 </body>
 </html>
