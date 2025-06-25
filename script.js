@@ -214,18 +214,15 @@ function initParallaxEffects() {
 // Tab switching functionality
 function initTabSwitching() {
     const tabContainers = document.querySelectorAll('.code-tabs, .output-tabs');
-    console.log('Found tab containers:', tabContainers.length);
     
     tabContainers.forEach(container => {
         const buttons = container.querySelectorAll('.tab-button');
         const contents = container.querySelectorAll('.tab-content');
-        console.log('Container has buttons:', buttons.length, 'contents:', contents.length);
         
         buttons.forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetTab = button.getAttribute('data-tab');
-                console.log('Tab clicked:', targetTab);
                 
                 // Find the parent container for this specific tab group
                 const parentContainer = button.closest('.code-tabs, .output-tabs');
@@ -241,9 +238,6 @@ function initTabSwitching() {
                 const targetContent = parentContainer.querySelector(`.tab-content[data-tab="${targetTab}"]`);
                 if (targetContent) {
                     targetContent.classList.add('active');
-                    console.log('Activated tab content:', targetTab);
-                } else {
-                    console.error('Tab content not found for:', targetTab);
                 }
             });
         });
@@ -598,7 +592,7 @@ addPulseAnimation();
 initPerformanceMonitoring();
 
 // Keyboard shortcuts for power users
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', async function(e) {
     // Press 'C' to copy code from active tab
     if (e.key === 'c' && e.ctrlKey) {
         const activeCodeBlock = document.querySelector('.tab-content.active code');
@@ -655,7 +649,6 @@ function initThemeToggle() {
     const themeIcon = document.querySelector('.theme-icon');
     
     if (!themeToggle || !themeIcon) {
-        console.error('Theme toggle elements not found');
         return;
     }
     
@@ -692,6 +685,10 @@ function initMobileMenu() {
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     
+    if (!mobileMenuToggle || !navLinks) {
+        return;
+    }
+    
     mobileMenuToggle.addEventListener('click', function() {
         this.classList.toggle('active');
         navLinks.classList.toggle('active');
@@ -727,6 +724,10 @@ function initMobileMenu() {
 // Back to Top Button
 function initBackToTop() {
     const backToTopButton = document.getElementById('back-to-top');
+    
+    if (!backToTopButton) {
+        return;
+    }
     
     window.addEventListener('scroll', throttle(() => {
         if (window.pageYOffset > 300) {
