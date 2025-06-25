@@ -594,6 +594,7 @@ button {
     border-radius: 1rem;
     border: 1px solid var(--border-color);
     overflow: hidden;
+    position: relative;
 }
 
 .tab-buttons {
@@ -626,11 +627,23 @@ button {
 }
 
 .tab-content {
-    display: none;
+    display: block;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    will-change: opacity, transform;
 }
 
 .tab-content.active {
-    display: block;
+    opacity: 1;
+    transform: translateX(0);
+    position: relative;
+    pointer-events: auto;
 }
 
 /* Code Showcase */
@@ -1184,6 +1197,7 @@ code {
     border-radius: 1rem;
     border: 1px solid var(--border-color);
     overflow: hidden;
+    position: relative;
 }
 
 /* Summary Report */

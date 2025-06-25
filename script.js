@@ -227,19 +227,10 @@ function initTabSwitching() {
                 
                 // Add active class to clicked button and corresponding content
                 button.classList.add('active');
-                const targetContent = container.querySelector(`[data-tab="${targetTab}"]`);
+                const targetContent = container.querySelector(`.tab-content[data-tab="${targetTab}"]`);
                 if (targetContent) {
                     targetContent.classList.add('active');
                 }
-                
-                // Animate tab switch
-                targetContent.style.opacity = '0';
-                targetContent.style.transform = 'translateX(20px)';
-                
-                setTimeout(() => {
-                    targetContent.style.opacity = '1';
-                    targetContent.style.transform = 'translateX(0)';
-                }, 100);
             });
         });
     });
@@ -261,7 +252,7 @@ function initCopyButtons() {
                 const originalText = button.textContent;
                 const originalBg = button.style.background;
                 
-                button.textContent = '✅ Copied!';
+                button.textContent = 'Copied!';
                 button.style.background = '#10b981';
                 button.style.transform = 'scale(0.95)';
                 
@@ -282,16 +273,16 @@ function initCopyButtons() {
                     document.execCommand('copy');
                     document.body.removeChild(textArea);
                     
-                    button.textContent = '✅ Copied!';
+                    button.textContent = 'Copied!';
                     button.style.background = '#10b981';
                     setTimeout(() => {
                         button.textContent = originalText;
                         button.style.background = originalBg;
                     }, 2000);
                 } catch (fallbackErr) {
-                    button.textContent = '❌ Failed';
+                    button.textContent = 'Failed';
                     setTimeout(() => {
-                        button.textContent = '📋 Copy';
+                        button.textContent = 'Copy';
                     }, 2000);
                 }
             }
@@ -773,7 +764,7 @@ function initCodePlayground() {
         if (codeElement && header && codeElement.textContent.includes('python')) {
             const runButton = document.createElement('button');
             runButton.className = 'run-button';
-            runButton.innerHTML = '▶️ Run';
+            runButton.innerHTML = 'Run';
             runButton.addEventListener('click', () => simulateCodeExecution(codeElement, runButton));
             header.appendChild(runButton);
         }
@@ -782,7 +773,7 @@ function initCodePlayground() {
 
 function simulateCodeExecution(codeElement, button) {
     const originalText = button.innerHTML;
-    button.innerHTML = '⏳ Running...';
+    button.innerHTML = 'Running...';
     button.disabled = true;
     
     // Create output area
