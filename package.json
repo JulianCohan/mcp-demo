@@ -1,0 +1,31 @@
+{
+  "name": "mcp-earningsagent-website",
+  "version": "1.0.0",
+  "description": "Showcase website for Model Context Protocol and EarningsAgent",
+  "main": "index.html",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "python -m http.server 8000",
+    "dev": "npm run serve",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": [
+    "MCP",
+    "Model Context Protocol",
+    "EarningsAgent",
+    "AI",
+    "financial-intelligence"
+  ],
+  "author": "MCP & EarningsAgent Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/mcp-earningsagent-website"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

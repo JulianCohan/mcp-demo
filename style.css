@@ -61,6 +61,9 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 /* Typography */
@@ -68,6 +71,31 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
     line-height: 1.2;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+/* Better focus for buttons and links */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--accent-blue);
+    outline-offset: 3px;
+    border-radius: 0.25rem;
+}
+
+/* Remove outline for mouse users */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Keyboard navigation indicator */
+body.keyboard-navigation *:focus {
+    outline: 3px solid var(--accent-purple);
+    outline-offset: 3px;
 }
 
 /* Navigation */
@@ -128,6 +156,15 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
     transition: all 0.3s ease;
     margin-left: 1rem;
+    position: relative;
+}
+
+.theme-toggle:focus-visible::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 3px solid var(--accent-blue);
+    border-radius: 50%;
 }
 
 .theme-toggle:hover {
@@ -157,6 +194,8 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--text-primary);
     transition: all 0.3s ease;
     border-radius: 2px;
+    display: block;
+    margin: 0 auto;
 }
 
 .mobile-menu-toggle.active span:nth-child(1) {
@@ -235,6 +274,14 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     transition: all 0.3s ease;
     display: inline-block;
+    position: relative;
+}
+
+/* Ensure minimum touch target size (48x48px) */
+.btn,
+button {
+    min-height: 48px;
+    min-width: 48px;
 }
 
 .btn-primary {
@@ -610,6 +657,7 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
     font-size: 0.8rem;
     transition: all 0.3s ease;
+    min-width: 80px;
 }
 
 .copy-button:hover {
@@ -621,6 +669,8 @@ pre {
     padding: 1.5rem;
     overflow-x: auto;
     margin: 0;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
 code {
@@ -1254,6 +1304,13 @@ code {
     background: var(--bg-secondary);
     border-radius: 0.5rem;
     overflow: hidden;
+    min-width: 600px;
+}
+
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 1rem 0;
 }
 
 .metrics-table th,
@@ -1740,30 +1797,75 @@ footer p {
     
     .hero {
         padding: 0 1rem;
+        min-height: 80vh;
     }
     
     .hero-title {
         font-size: 2rem;
+        line-height: 1.1;
     }
     
     .hero-subtitle {
         font-size: 1rem;
+        line-height: 1.5;
     }
     
     .comparison-principle {
         flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
     }
     
     .feature-detailed {
         flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
     }
     
     .impl-item {
         flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
     }
     
     .arch-step {
         flex-direction: column;
         text-align: center;
+        gap: 0.5rem;
+    }
+    
+    /* Better mobile touch targets */
+    .btn {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .tab-button {
+        padding: 1rem 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Prevent horizontal scroll on very small content */
+    .code-showcase {
+        max-width: calc(100vw - 2rem);
+    }
+    
+    pre {
+        padding: 1rem;
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+    
+    /* Improve readability */
+    .section-title {
+        font-size: 1.75rem;
+        line-height: 1.2;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+        line-height: 1.5;
     }
 }

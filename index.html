@@ -10,19 +10,28 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="">
+    <meta property="og:url" content="https://mcp-earningsagent.com">
     <meta property="og:title" content="MCP & EarningsAgent - The Future of AI Integration">
     <meta property="og:description" content="Revolutionary AI integration standards that eliminate complexity. See MCP protocol examples and EarningsAgent financial intelligence in action.">
-    <meta property="og:image" content="">
+    <meta property="og:image" content="https://mcp-earningsagent.com/og-image.png">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="">
+    <meta property="twitter:url" content="https://mcp-earningsagent.com">
     <meta property="twitter:title" content="MCP & EarningsAgent - The Future of AI Integration">
     <meta property="twitter:description" content="Revolutionary AI integration standards that eliminate complexity. See MCP protocol examples and EarningsAgent financial intelligence in action.">
-    <meta property="twitter:image" content="">
+    <meta property="twitter:image" content="https://mcp-earningsagent.com/twitter-image.png">
     
     <title>MCP & EarningsAgent - The Future of AI Integration</title>
+    
+    <!-- Canonical URL -->
+    <meta name="canonical" content="https://mcp-earningsagent.com">
+    
+    <!-- Security Headers (to be set server-side, documented here) -->
+    <!-- Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; -->
+    <!-- X-Frame-Options: DENY -->
+    <!-- X-Content-Type-Options: nosniff -->
+    <!-- Referrer-Policy: strict-origin-when-cross-origin -->
     
     <!-- Preload critical resources -->
     <link rel="preload" href="style.css" as="style">
@@ -32,24 +41,107 @@
     <style>
         /* Critical above-the-fold styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #ffffff; overflow-x: hidden; }
-        .navbar { position: fixed; top: 0; width: 100%; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 0; }
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; padding: 0 2rem; }
-        .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem; text-align: center; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: #0a0a0a; 
+            color: #ffffff; 
+            overflow-x: hidden;
+            font-display: swap;
+        }
+        .navbar { 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            background: rgba(10, 10, 10, 0.8); 
+            backdrop-filter: blur(10px); 
+            z-index: 1000; 
+            padding: 1rem 0;
+            will-change: transform;
+        }
+        .hero { 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            position: relative; 
+            padding: 0 2rem;
+        }
+        .hero-title { 
+            font-size: clamp(2.5rem, 5vw, 4rem); 
+            margin-bottom: 1.5rem; 
+            text-align: center;
+            font-weight: 700;
+        }
     </style>
     
     <link rel="stylesheet" href="style.css">
     
-    <!-- Font loading optimization -->
+    <!-- Optimized font loading - reduced weights -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"></noscript>
     
-    <!-- Performance and analytics -->
+    <!-- Performance optimization -->
     <script>
-        // Performance monitoring
-        window.performance.mark('head-end');
+        // Critical performance marks
+        if ('performance' in window) {
+            window.performance.mark('head-end');
+        }
+        
+        // Preload critical resources
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = './script.js';
+        document.head.appendChild(link);
+    </script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MCP & EarningsAgent",
+      "description": "Revolutionary AI integration standards and financial intelligence platform",
+      "url": "https://mcp-earningsagent.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://mcp-earningsagent.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Model Context Protocol",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Cross-platform",
+      "description": "Universal standard for AI-data connectivity",
+      "url": "https://modelcontextprotocol.io",
+      "author": {
+        "@type": "Organization",
+        "name": "Anthropic"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "EarningsAgent",
+      "applicationCategory": "FinanceApplication",
+      "description": "AI-powered financial research platform",
+      "url": "https://github.com/JulianCohan/EarningsAgent",
+      "author": {
+        "@type": "Person",
+        "name": "Julian Cohan"
+      }
+    }
     </script>
 </head>
 <body>
@@ -63,11 +155,11 @@
                 <a href="#mcp-examples">Examples</a>
                 <a href="#how-different">How It's Different</a>
                 <a href="#earnings-agent">EarningsAgent</a>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
                     <span class="theme-icon">🌙</span>
                 </button>
             </div>
-            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu" title="Menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -76,17 +168,17 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" role="banner">
         <div class="hero-background"></div>
         <div class="hero-content">
             <h1 class="hero-title">The Future of AI Integration is Here</h1>
             <p class="hero-subtitle">Discover how Model Context Protocol revolutionizes AI connectivity and see it in action with EarningsAgent - an AI-powered financial research platform that transforms hours of manual analysis into minutes of automated intelligence</p>
             <div class="hero-buttons">
-                <a href="#what-is-mcp" class="btn btn-primary">Learn About MCP</a>
-                <a href="#earnings-agent" class="btn btn-secondary">Explore EarningsAgent</a>
+                <a href="#what-is-mcp" class="btn btn-primary" aria-label="Learn more about Model Context Protocol">Learn About MCP</a>
+                <a href="#earnings-agent" class="btn btn-secondary" aria-label="Explore EarningsAgent financial platform">Explore EarningsAgent</a>
             </div>
         </div>
-        <div class="scroll-indicator">
+        <div class="scroll-indicator" aria-hidden="true">
             <div class="scroll-arrow"></div>
         </div>
     </section>
@@ -237,7 +329,7 @@
                             <div class="code-showcase">
                                 <div class="code-header">
                                     <span class="code-title">github_server.py</span>
-                                    <button class="copy-button">📋 Copy</button>
+                                    <button class="copy-button" aria-label="Copy code to clipboard" title="Copy code">📋 Copy</button>
                                 </div>
                                 <pre><code># MCP Server for GitHub Integration
 import mcp
@@ -318,7 +410,7 @@ async def call_tool(name: str, arguments: dict):
                             <div class="code-showcase">
                                 <div class="code-header">
                                     <span class="code-title">ai_app.py</span>
-                                    <button class="copy-button">📋 Copy</button>
+                                    <button class="copy-button" aria-label="Copy code to clipboard" title="Copy code">📋 Copy</button>
                                 </div>
                                 <pre><code># AI Application using GitHub MCP Server
 from mcp import ClientSession, StdioServerParameters
@@ -371,7 +463,7 @@ async def analyze_repo_with_ai():
                             <div class="code-showcase">
                                 <div class="code-header">
                                     <span class="code-title">protocol_messages.json</span>
-                                    <button class="copy-button">📋 Copy</button>
+                                    <button class="copy-button" aria-label="Copy code to clipboard" title="Copy code">📋 Copy</button>
                                 </div>
                                 <pre><code>// 1. Initialization handshake
 {
@@ -1230,8 +1322,8 @@ async def analyze_repo_with_ai():
             <h2>Ready to Join the AI Integration Revolution?</h2>
             <p>Explore how MCP and EarningsAgent are transforming their respective domains through standardization, automation, and AI-powered intelligence</p>
             <div class="cta-buttons">
-                <a href="https://modelcontextprotocol.io" target="_blank" class="btn btn-primary">Explore MCP Documentation</a>
-                <a href="https://github.com/JulianCohan/EarningsAgent" target="_blank" class="btn btn-secondary">Try EarningsAgent</a>
+                <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Visit MCP documentation website (opens in new tab)">Explore MCP Documentation</a>
+                <a href="https://github.com/JulianCohan/EarningsAgent" target="_blank" rel="noopener" class="btn btn-secondary" aria-label="View EarningsAgent on GitHub (opens in new tab)">Try EarningsAgent</a>
             </div>
         </div>
     </section>
@@ -1244,7 +1336,7 @@ async def analyze_repo_with_ai():
                 <div class="footer-links">
                     <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">MCP Docs</a>
                     <a href="https://github.com/JulianCohan/EarningsAgent" target="_blank" rel="noopener">EarningsAgent</a>
-                    <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+                    <button class="back-to-top" id="back-to-top" aria-label="Scroll back to top" title="Back to top">↑</button>
                 </div>
             </div>
         </div>
@@ -1258,7 +1350,8 @@ async def analyze_repo_with_ai():
             if ('performance' in window && 'getEntriesByType' in performance) {
                 const navTiming = performance.getEntriesByType('navigation')[0];
                 const loadTime = navTiming.loadEventEnd - navTiming.loadEventStart;
-                console.log(`⚡ Page load time: ${loadTime}ms`);
+                // Send to analytics in production
+                // analytics.track('page_load_time', loadTime);
             }
         });
     </script>
@@ -1270,10 +1363,11 @@ async def analyze_repo_with_ai():
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                navigator.serviceWorker.register('./sw.js').then(function(registration) {
                     console.log('SW registered: ', registration);
                 }).catch(function(registrationError) {
-                    console.log('SW registration failed: ', registrationError);
+                    console.error('SW registration failed: ', registrationError);
+                    // Fail silently - don't break the experience
                 });
             });
         }

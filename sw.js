@@ -1,12 +1,13 @@
 // Service Worker for MCP & EarningsAgent Website
 // Enhanced caching and performance optimization
 
-const CACHE_NAME = 'mcp-earningsagent-v1.0.0';
+const CACHE_NAME = 'mcp-earningsagent-v1.0.1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/script.js',
+  './',
+  './index.html',
+  './style.css',
+  './script.js',
+  './offline.html',
   'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap'
 ];
 
@@ -48,7 +49,12 @@ self.addEventListener('fetch', function(event) {
 
             return response;
           }
-        );
+        ).catch(function() {
+          // Return offline page for navigation requests
+          if (event.request.mode === 'navigate') {
+            return caches.match('./offline.html');
+          }
+        });
       })
     );
 });

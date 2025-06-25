@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initLazyLoading();
     initCodePlayground();
     
-    console.log('🚀 MCP & EarningsAgent website fully loaded!');
+    // Website fully loaded
 });
 
 // Navbar scroll effects with enhanced visibility
@@ -272,11 +272,28 @@ function initCopyButtons() {
                 }, 2000);
                 
             } catch (err) {
-                console.error('Failed to copy: ', err);
-                button.textContent = '❌ Failed';
-                setTimeout(() => {
-                    button.textContent = '📋 Copy';
-                }, 2000);
+                // Handle clipboard API failures gracefully
+                try {
+                    // Fallback to legacy method
+                    const textArea = document.createElement('textarea');
+                    textArea.value = codeBlock.textContent;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    
+                    button.textContent = '✅ Copied!';
+                    button.style.background = '#10b981';
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.background = originalBg;
+                    }, 2000);
+                } catch (fallbackErr) {
+                    button.textContent = '❌ Failed';
+                    setTimeout(() => {
+                        button.textContent = '📋 Copy';
+                    }, 2000);
+                }
             }
         });
     });
@@ -557,18 +574,17 @@ function addPulseAnimation() {
 
 // Intersection Observer for performance monitoring
 function initPerformanceMonitoring() {
-    if ('IntersectionObserver' in window) {
-        console.log('✅ IntersectionObserver supported - smooth animations enabled');
-    } else {
-        console.log('⚠️ IntersectionObserver not supported - falling back to basic animations');
-    }
+    // Check for feature support
+    const features = {
+        intersectionObserver: 'IntersectionObserver' in window,
+        performance: 'performance' in window,
+        serviceWorker: 'serviceWorker' in navigator
+    };
     
-    // Monitor performance
-    if ('performance' in window) {
-        window.addEventListener('load', () => {
-            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-            console.log(`⚡ Page loaded in ${loadTime}ms`);
-        });
+    // Graceful degradation for unsupported features
+    if (!features.intersectionObserver) {
+        // Add fallback class for basic animations
+        document.documentElement.classList.add('no-intersection-observer');
     }
 }
 
@@ -583,27 +599,33 @@ document.addEventListener('keydown', function(e) {
         const activeCodeBlock = document.querySelector('.tab-content.active code');
         if (activeCodeBlock && document.activeElement !== activeCodeBlock) {
             e.preventDefault();
-            navigator.clipboard.writeText(activeCodeBlock.textContent);
-            
-            // Show notification
-            const notification = document.createElement('div');
-            notification.textContent = 'Code copied to clipboard!';
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: var(--accent-blue);
-                color: white;
-                padding: 1rem;
-                border-radius: 0.5rem;
-                z-index: 9999;
-                animation: slideInRight 0.3s ease-out;
-            `;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.remove();
-            }, 2000);
+            try {
+                await navigator.clipboard.writeText(activeCodeBlock.textContent);
+                
+                // Show notification
+                const notification = document.createElement('div');
+                notification.textContent = 'Code copied to clipboard!';
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--accent-blue);
+                    color: white;
+                    padding: 1rem;
+                    border-radius: 0.5rem;
+                    z-index: 9999;
+                    animation: slideInRight 0.3s ease-out;
+                `;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 2000);
+            } catch (err) {
+                // Clipboard operation failed silently
+            }
         }
     }
 });
@@ -836,34 +858,39 @@ function simulateCodeExecution(codeElement, button) {
 
 // Enhanced Performance Monitoring
 function initAdvancedPerformanceMonitoring() {
-    // Monitor Core Web Vitals
+    // Monitor Core Web Vitals for analytics (production use)
     if ('performance' in window && 'PerformanceObserver' in window) {
-        // Largest Contentful Paint (LCP)
-        new PerformanceObserver((entryList) => {
-            const entries = entryList.getEntries();
-            const lastEntry = entries[entries.length - 1];
-            console.log('LCP:', Math.round(lastEntry.startTime), 'ms');
-        }).observe({ type: 'largest-contentful-paint', buffered: true });
-        
-        // First Input Delay (FID)
-        new PerformanceObserver((entryList) => {
-            const entries = entryList.getEntries();
-            entries.forEach(entry => {
-                console.log('FID:', Math.round(entry.processingStart - entry.startTime), 'ms');
-            });
-        }).observe({ type: 'first-input', buffered: true });
-        
-        // Cumulative Layout Shift (CLS)
-        let clsValue = 0;
-        new PerformanceObserver((entryList) => {
-            const entries = entryList.getEntries();
-            entries.forEach(entry => {
-                if (!entry.hadRecentInput) {
-                    clsValue += entry.value;
-                }
-            });
-            console.log('CLS:', clsValue.toFixed(4));
-        }).observe({ type: 'layout-shift', buffered: true });
+        try {
+            // Largest Contentful Paint (LCP)
+            new PerformanceObserver((entryList) => {
+                const entries = entryList.getEntries();
+                const lastEntry = entries[entries.length - 1];
+                // Send to analytics service in production
+                // analytics.track('LCP', Math.round(lastEntry.startTime));
+            }).observe({ type: 'largest-contentful-paint', buffered: true });
+            
+            // First Input Delay (FID)
+            new PerformanceObserver((entryList) => {
+                const entries = entryList.getEntries();
+                entries.forEach(entry => {
+                    // analytics.track('FID', Math.round(entry.processingStart - entry.startTime));
+                });
+            }).observe({ type: 'first-input', buffered: true });
+            
+            // Cumulative Layout Shift (CLS)
+            let clsValue = 0;
+            new PerformanceObserver((entryList) => {
+                const entries = entryList.getEntries();
+                entries.forEach(entry => {
+                    if (!entry.hadRecentInput) {
+                        clsValue += entry.value;
+                    }
+                });
+                // analytics.track('CLS', clsValue.toFixed(4));
+            }).observe({ type: 'layout-shift', buffered: true });
+        } catch (error) {
+            // Performance monitoring failed, continue without it
+        }
     }
 }
 
@@ -916,23 +943,7 @@ function initAccessibilityFeatures() {
 initAccessibilityFeatures();
 
 // Final console message
-console.log(`
-🚀 MCP & EarningsAgent Website Loaded Successfully!
-
-Features initialized:
-✅ Smooth scroll animations
-✅ Interactive tabs
-✅ Copy-to-clipboard functionality  
-✅ Responsive navigation
-✅ Performance optimizations
-✅ Keyboard shortcuts (Ctrl+C to copy code)
-✅ Dark/Light mode toggle
-✅ Mobile-responsive menu
-✅ Back to top button
-✅ Lazy loading
-✅ Code playground simulation
-✅ Advanced performance monitoring
-✅ Enhanced accessibility
-
-Built with ❤️ to showcase the future of AI integration
-`);
+// Development mode logging (removed in production)
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    console.log('🚀 MCP & EarningsAgent Website - Development Mode');
+}
