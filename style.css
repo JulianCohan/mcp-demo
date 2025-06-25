@@ -633,16 +633,26 @@ button {
     display: none;
     opacity: 0;
     transform: translateX(20px);
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
     will-change: opacity, transform;
 }
 
 .tab-content.active {
-    display: block;
+    display: block !important;
     opacity: 1;
     transform: translateX(0);
-    position: relative;
-    pointer-events: auto;
+    animation: tabFadeIn 0.3s ease forwards;
+}
+
+@keyframes tabFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* Code Showcase */

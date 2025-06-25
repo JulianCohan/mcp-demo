@@ -663,7 +663,7 @@ function initThemeToggle() {
     });
     
     function updateThemeIcon(theme) {
-        themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
     }
 }
 
