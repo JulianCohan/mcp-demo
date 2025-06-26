@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Context Protocol & Financial Research</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a3e 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1200px;
+            padding: 60px;
+            text-align: center;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #4f46e5, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            color: #06b6d4;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: rgba(79, 70, 229, 0.3);
+            border: 2px solid #4f46e5;
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(79, 70, 229, 0.5);
+        }
+
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4f46e5, #06b6d4);
+            transition: width 0.3s ease;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+        }
+
+        .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .diagram {
+            margin: 40px auto;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(79, 70, 229, 0.3);
+        }
+
+        .flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .flow-item {
+            background: rgba(79, 70, 229, 0.2);
+            padding: 20px 30px;
+            border-radius: 10px;
+            border: 2px solid #4f46e5;
+            position: relative;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .arrow {
+            font-size: 2em;
+            color: #06b6d4;
+            animation: slideArrow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes slideArrow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        .code-block {
+            background: #1a1a2e;
+            border: 1px solid #4f46e5;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 700px;
+            text-align: left;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .highlight {
+            color: #06b6d4;
+            font-weight: bold;
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(79, 70, 229, 0.5);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="slideshow-container">
+        <div class="progress-bar" id="progressBar"></div>
+        
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="slide-number">1 / 8</div>
+            <h1>Model Context Protocol (MCP)</h1>
+            <p style="font-size: 1.5em;">Connecting AI Assistants to Your Financial Research Tool</p>
+            <div class="diagram">
+                <div class="flow">
+                    <div class="flow-item">🤖 AI Assistant</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">🔌 MCP</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-item">📊 Your Tools</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: What is MCP -->
+        <div class="slide">
+            <div class="slide-number">2 / 8</div>
+            <h2>What is Model Context Protocol?</h2>
+            <p>MCP is an open protocol that enables AI assistants to securely connect with external data sources and tools.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">🔐</div>
+                    <h3>Secure Connection</h3>
+                    <p>Safe, controlled access to your tools and data</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🚀</div>
+                    <h3>Enhanced Capabilities</h3>
+                    <p>Extend AI abilities beyond built-in features</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔧</div>
+                    <h3>Standardized Interface</h3>
+                    <p>Common protocol for all integrations</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: How MCP Works -->
+        <div class="slide">
+            <div class="slide-number">3 / 8</div>
+            <h2>How MCP Works</h2>
+            <div class="diagram">
+                <p>Three-tier architecture:</p>
+                <div class="flow" style="flex-direction: column; gap: 20px;">
+                    <div class="flow-item" style="width: 80%;">
+                        <strong>MCP Host (AI Assistant)</strong>
+                        <p style="font-size: 0.9em; margin: 5px 0;">Claude, ChatGPT, or other AI platforms</p>
+                    </div>
+                    <div class="arrow" style="transform: rotate(90deg);">↓</div>
+                    <div class="flow-item" style="width: 80%;">
+                        <strong>MCP Protocol</strong>
+                        <p style="font-size: 0.9em; margin: 5px 0;">Standardized communication layer</p>
+                    </div>
+                    <div class="arrow" style="transform: rotate(90deg);">↓</div>
+                    <div class="flow-item" style="width: 80%;">
+                        <strong>MCP Server (Your Tool)</strong>
+                        <p style="font-size: 0.9em; margin: 5px 0;">Financial Research Tool, databases, APIs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Your Financial Tool -->
+        <div class="slide">
+            <div class="slide-number">4 / 8</div>
+            <h2>Your Financial Research Tool</h2>
+            <p>Current capabilities that could become MCP-powered:</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">📈</div>
+                    <h3>Revenue Analysis</h3>
+                    <p>Automated collection of current revenue data</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🎯</div>
+                    <h3>Guidance Tracking</h3>
+                    <p>Revenue forecasts and outlook analysis</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💰</div>
+                    <h3>Profit Metrics</h3>
+                    <p>Gross profit and margin calculations</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔄</div>
+                    <h3>Batch Processing</h3>
+                    <p>Analyze multiple companies in parallel</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Integration Vision -->
+        <div class="slide">
+            <div class="slide-number">5 / 8</div>
+            <h2>MCP Integration Vision</h2>
+            <p>Transform your tool into an MCP server:</p>
+            <div class="code-block">
+                <p><span class="highlight">// Example MCP server configuration</span></p>
+                <p>{</p>
+                <p>  "name": "financial-research-mcp",</p>
+                <p>  "version": "1.0.0",</p>
+                <p>  "tools": [</p>
+                <p>    {</p>
+                <p>      "name": "analyze_company",</p>
+                <p>      "description": "Get financial metrics for a ticker",</p>
+                <p>      "parameters": {</p>
+                <p>        "ticker": "string",</p>
+                <p>        "metrics": ["revenue", "guidance", "profit"]</p>
+                <p>      }</p>
+                <p>    }</p>
+                <p>  ]</p>
+                <p>}</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Benefits -->
+        <div class="slide">
+            <div class="slide-number">6 / 8</div>
+            <h2>Benefits of MCP Integration</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">💬</div>
+                    <h3>Natural Language Access</h3>
+                    <p>"What's NVDA's latest revenue guidance?"</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🤝</div>
+                    <h3>AI-Powered Analysis</h3>
+                    <p>Combine your data with AI's reasoning</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">⚡</div>
+                    <h3>Real-Time Updates</h3>
+                    <p>Always get the latest financial data</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔗</div>
+                    <h3>Multi-Platform</h3>
+                    <p>Works with any MCP-compatible AI</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Implementation Steps -->
+        <div class="slide">
+            <div class="slide-number">7 / 8</div>
+            <h2>Implementation Roadmap</h2>
+            <div class="diagram">
+                <div style="text-align: left; max-width: 700px; margin: 0 auto;">
+                    <p><strong>1. Create MCP Server Wrapper</strong></p>
+                    <p style="margin-left: 30px; font-size: 1.1em;">→ Wrap your existing Python tool in MCP protocol</p>
+                    <br>
+                    <p><strong>2. Define Tool Endpoints</strong></p>
+                    <p style="margin-left: 30px; font-size: 1.1em;">→ Expose analyze_company, batch_analysis functions</p>
+                    <br>
+                    <p><strong>3. Handle Authentication</strong></p>
+                    <p style="margin-left: 30px; font-size: 1.1em;">→ Secure API key management for Tavily/OpenAI</p>
+                    <br>
+                    <p><strong>4. Test & Deploy</strong></p>
+                    <p style="margin-left: 30px; font-size: 1.1em;">→ Local testing, then deploy as MCP server</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Future Possibilities -->
+        <div class="slide">
+            <div class="slide-number">8 / 8</div>
+            <h2>Future Possibilities</h2>
+            <p>With MCP, AI assistants could:</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">📊</div>
+                    <h3>Portfolio Analysis</h3>
+                    <p>"Compare revenue growth across my watchlist"</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔔</div>
+                    <h3>Smart Alerts</h3>
+                    <p>"Notify me when any company updates guidance"</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📝</div>
+                    <h3>Report Generation</h3>
+                    <p>"Create a quarterly earnings summary report"</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🎨</div>
+                    <h3>Visualizations</h3>
+                    <p>"Chart revenue trends for tech sector"</p>
+                </div>
+            </div>
+            <p style="margin-top: 40px; font-size: 1.4em;">
+                <strong>Your financial research tool + MCP = AI-powered financial assistant! 🚀</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="changeSlide(-1)">← Previous</button>
+        <button class="nav-btn" onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateProgressBar();
+        }
+
+        function changeSlide(n) {
+            showSlide(currentSlide + n);
+        }
+
+        function updateProgressBar() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 10 + 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 20) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize
+        createParticles();
+        updateProgressBar();
+    </script>
+</body>
+</html>

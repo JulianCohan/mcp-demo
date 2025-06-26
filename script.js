@@ -190,13 +190,14 @@ function initParallaxEffects() {
             heroBackground.style.transform = `translateY(${scrolled * speed}px)`;
         }
         
-        // Floating elements parallax
-        const floatingElements = document.querySelectorAll('.card-icon, .feature-icon, .impl-icon');
-        floatingElements.forEach((element, index) => {
-            const speed = 0.1 + (index % 3) * 0.05;
-            const yPos = scrolled * speed;
-            element.style.transform = `translateY(${yPos}px)`;
-        });
+        // Disable floating elements parallax to prevent distracting emoji movement
+        // Icons and emojis should remain static for better readability
+        // const floatingElements = document.querySelectorAll('.card-icon, .feature-icon, .impl-icon');
+        // floatingElements.forEach((element, index) => {
+        //     const speed = 0.1 + (index % 3) * 0.05;
+        //     const yPos = scrolled * speed;
+        //     element.style.transform = `translateY(${yPos}px)`;
+        // });
         
         ticking = false;
     }
