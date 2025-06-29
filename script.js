@@ -98,10 +98,8 @@ function initScrollAnimations() {
         .similarity-card,
         .comparison-section,
         .timeline-item,
-        .ecosystem-showcase,
         .feature-detailed,
         .code-showcase,
-        .impl-item,
         .metric-card,
         .highlight-item,
         .insight-item,
@@ -417,7 +415,6 @@ function initHoverEffects() {
         .metric-card,
         .timeline-item,
         .feature-detailed,
-        .impl-item,
         .segment-card,
         .impact-dimension
     `);

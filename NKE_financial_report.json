@@ -1,0 +1,82 @@
+{
+  "report_metadata": {
+    "report_year": 2025,
+    "period_date": "2025-06-28",
+    "report_date": "2025-06-28 21:50:54",
+    "destination": "Results/CSV",
+    "report_source": "Enhanced Financial Research Tool",
+    "target": "NKE",
+    "report_firm": "AI Financial Research",
+    "analyst_name": "AI Agent",
+    "processing_timestamp": "2025-06-28T21:50:54.056103"
+  },
+  "financial_data": {
+    "current_revenue": {
+      "quarterly": {
+        "amount_billions": "11.1",
+        "amount_raw": "$11.1 billion",
+        "growth_rate_percent": "12"
+      },
+      "annual": {},
+      "currency": "USD",
+      "source": "search_results"
+    },
+    "revenue_guidance": {
+      "next_quarter": {
+        "amount_billions": "11.1",
+        "amount_raw": "$11.1 billion",
+        "forecast_period": "Q4 2025"
+      },
+      "next_fiscal_year": {},
+      "analyst_estimates": {},
+      "currency": "USD",
+      "source": "search_results"
+    },
+    "gross_profit": {
+      "quarterly": {
+        "amount_billions": "11.1",
+        "amount_raw": "$11.1 billion",
+        "reporting_period": "Q4 FY2025"
+      },
+      "annual": {},
+      "margins": {
+        "gross_margin_percent": "40.3"
+      },
+      "currency": "USD",
+      "source": "search_results"
+    }
+  },
+  "raw_search_results": {
+    "current_revenue_search": "As of the latest reports:\n\n### Quarterly Revenue\n- **Latest Quarter**: Q4 of Fiscal Year 2025\n- **Revenue**: $11.1 billion\n- **Reporting Period**: Ended May 31, 2025\n- **Year-on-Year Change**: Declined by 12% compared to the same quarter last year.\n\n### Annual Revenue\n- **Fiscal Year 2025 Revenue**: $46.309 billion\n- **Year-on-Year Change**: Declined by 10% compared to Fiscal Year 2024.\n\nThese figures indicate a challenging year for Nike, with both quarterly and annual revenues showing declines.",
+    "revenue_guidance_search": "Nike (NKE) has provided the following revenue guidance and outlook:\n\n1. **Latest Revenue Results**:\n   - For Q4 2025, Nike reported revenues of **$11.1 billion**, which is a **12% decline** year-over-year but exceeded analyst expectations by 3.4%. The previous year's revenue for the same quarter was **$12.61 billion**.\n   - For the full fiscal year 2025, Nike's revenue is projected to be down **10%**, totaling approximately **$44.71 billion** compared to **$49.32 billion** in the previous year.\n",
+    "gross_profit_search": "As of the latest financial report for Nike, Inc. (NKE):\n\n### Quarterly Figures (Q4 FY2025)\n- **Revenue**: $11.1 billion\n- **Gross Profit**: Not explicitly stated, but gross margin decreased by **440 basis points** to **40.3%**.\n- **Earnings Per Share (EPS)**: $0.14, compared to $1.01 in the same quarter last year.\n\n### Annual Figures (FY2025)\n- **Total Revenue**: Approximately $45.21 billion (based on estimates for the fiscal year).\n- **Gross Profit (TTM)**: $19.79 billion.\n\n### Trends\n- The rev"
+  },
+  "source_urls": [
+    "https://finance.yahoo.com/news/nike-nke-tops-q4-earnings-212502795.html",
+    "https://www.sec.gov/Archives/edgar/data/320187/000032018725000034/nke-20250626.htm",
+    "https://finance.yahoo.com/news/nike-inc-reports-fiscal-2025-201500808.html"
+  ],
+  "source_metadata": {
+    "total_sources": 3,
+    "current_revenue_sources": [],
+    "guidance_sources": [
+      "https://finance.yahoo.com/news/nike-nke-tops-q4-earnings-212502795.html",
+      "https://www.sec.gov/Archives/edgar/data/320187/000032018725000034/nke-20250626.htm"
+    ],
+    "gross_profit_sources": [
+      "https://finance.yahoo.com/news/nike-inc-reports-fiscal-2025-201500808.html"
+    ]
+  },
+  "report_year": 2025,
+  "period_date": "2025-06-28",
+  "report_date": "2025-06-28 21:50:54",
+  "destination": "Results/CSV",
+  "report_source": "Enhanced Financial Research Tool",
+  "target": "NKE",
+  "report_firm": "AI Financial Research",
+  "analyst_name": "AI Agent",
+  "currentrevenue_summary": "As of the latest reports:\n\n### Quarterly Revenue\n- **Latest Quarter**: Q4 of Fiscal Year 2025\n- **Revenue**: $11.1 billion\n- **Reporting Period**: Ended May 31, 2025\n- **Year-on-Year Change**: Declined by 12% compared to the same quarter last year.\n\n### Annual Revenue\n- **Fiscal Year 2025 Revenue**: $46.309 billion\n- **Year-on-Year Change**: Declined by 10% compared to Fiscal Year 2024.\n\nThese figures indicate a challenging year for Nike, with both quarterly and annual revenues showing declines. The quarterly results slightly exceeded analyst expectations, but the overall trend reflects ongoing difficulties in demand.",
+  "guidance_revenue_summary": "Nike (NKE) has provided the following revenue guidance and outlook:\n\n1. **Latest Revenue Results**:\n   - For Q4 2025, Nike reported revenues of **$11.1 billion**, which is a **12% decline** year-over-year but exceeded analyst expectations by 3.4%. The previous year's revenue for the same quarter was **$12.61 billion**.\n   - For the full fiscal year 2025, Nike's revenue is projected to be down **10%**, totaling approximately **$44.71 billion** compared to **$49.32 billion** in the previous year.\n\n2. **Forward-Looking Guidance**:\n   - **Next Quarter (Q1 2026)**: Analysts expect revenue to be around **$10.74 billion**.\n   - **Current Fiscal Year (FY 2026)**: The revenue forecast is approximately **$45.21 billion**.\n\n3. **Earnings Per Share (EPS)**:\n   - The consensus EPS estimate for the next quarter is **$0.32**, and for the current fiscal year, it is **$1.82**.\n\nThese figures reflect a cautious outlook as Nike navigates challenges in demand and market conditions. For further details, you can refer to the [Yahoo Finance article](https://finance.yahoo.com/news/nike-nke-tops-q4-earnings-212502795.html) and the [SEC filing](https://www.sec.gov/Archives/edgar/data/320187/000032018725000034/nke-20250626.htm).\n\n**Sources:**\n- [Yahoo Finance](https://finance.yahoo.com/news/nike-nke-tops-q4-earnings-212502795.html)\n- [SEC Filing](https://www.sec.gov/Archives/edgar/data/320187/000032018725000034/nke-20250626.htm)\n",
+  "gross_profit_summary": "As of the latest financial report for Nike, Inc. (NKE):\n\n### Quarterly Figures (Q4 FY2025)\n- **Revenue**: $11.1 billion\n- **Gross Profit**: Not explicitly stated, but gross margin decreased by **440 basis points** to **40.3%**.\n- **Earnings Per Share (EPS)**: $0.14, compared to $1.01 in the same quarter last year.\n\n### Annual Figures (FY2025)\n- **Total Revenue**: Approximately $45.21 billion (based on estimates for the fiscal year).\n- **Gross Profit (TTM)**: $19.79 billion.\n\n### Trends\n- The revenue for Q4 FY2025 represents a **12% decline** year-over-year.\n- The gross margin decrease is attributed to increased costs, including tariffs, which are expected to impact margins further in the upcoming quarters.\n- Analysts forecast that gross margins may continue to decline by **350-425 basis points** in the current quarter.\n\n### Reporting Period\n- The figures are for the quarter ended **May 31, 2025**.\n\nFor more detailed insights, you can refer to the [Nike Q4 Earnings Report](https://finance.yahoo.com/news/nike-inc-reports-fiscal-2025-201500808.html) and other financial analyses.\n\n**Sources:**\n- [Yahoo Finance](https://finance.yahoo.com/news/nike-inc-reports-fiscal-2025-201500808.html)\n",
+  "processing_timestamp": "2025-06-28T21:50:54.056134"
+}

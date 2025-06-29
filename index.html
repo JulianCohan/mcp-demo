@@ -152,7 +152,6 @@
             <div class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#what-is-mcp">What is MCP</a>
-                <a href="#mcp-examples">Examples</a>
                 <a href="#how-different">How It's Different</a>
                 <a href="#earnings-agent">EarningsAgent</a>
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
@@ -600,325 +599,6 @@
         </div>
     </section>
 
-    <!-- MCP Examples Section -->
-    <section id="mcp-examples" class="section dark-section">
-        <div class="container">
-            <h2 class="section-title">MCP in Action: Real Examples</h2>
-            <p class="section-subtitle">See how MCP transforms AI integration with concrete code examples and live implementations</p>
-            
-            <div class="examples-grid">
-                <div class="example-card large">
-                    <h3>Building a GitHub MCP Server</h3>
-                    <div class="code-tabs">
-                        <div class="tab-buttons">
-                            <button class="tab-button active" data-tab="server">Server Implementation</button>
-                            <button class="tab-button" data-tab="client">Client Usage</button>
-                            <button class="tab-button" data-tab="messages">JSON-RPC Messages</button>
-                        </div>
-                        
-                        <div class="tab-content active" data-tab="server">
-                            <div class="code-showcase">
-                                <div class="code-header">
-                                    <span class="code-title">github_server.py</span>
-                                    <button class="copy-button" aria-label="Copy code to clipboard" title="Copy code">Copy</button>
-                                </div>
-                                <pre><code># MCP Server for GitHub Integration
-import mcp
-from mcp.server import Server
-from github import Github
-
-server = Server("github-mcp")
-github_client = Github(token=os.getenv("GITHUB_TOKEN"))
-
-@server.list_resources()
-async def list_resources():
-    """List available GitHub resources"""
-    return [
-        mcp.Resource(
-            uri="github://repos",
-            name="GitHub Repositories",
-            description="Access repository information"
-        ),
-        mcp.Resource(
-            uri="github://issues",
-            name="GitHub Issues", 
-            description="Repository issues and PRs"
-        )
-    ]
-
-@server.read_resource()
-async def read_resource(uri: str):
-    """Read GitHub resource data"""
-    if uri.startswith("github://repos/"):
-        repo_name = uri.split("/")[-1]
-        repo = github_client.get_repo(repo_name)
-        return {
-            "name": repo.name,
-            "stars": repo.stargazers_count,
-            "forks": repo.forks_count,
-            "description": repo.description,
-            "language": repo.language,
-            "last_updated": repo.updated_at.isoformat()
-        }
-
-@server.list_tools()
-async def list_tools():
-    """List available GitHub tools"""
-    return [
-        mcp.Tool(
-            name="create_issue",
-            description="Create a new GitHub issue",
-            input_schema={
-                "type": "object",
-                "properties": {
-                    "repo": {"type": "string"},
-                    "title": {"type": "string"},
-                    "body": {"type": "string"}
-                },
-                "required": ["repo", "title"]
-            }
-        )
-    ]
-
-@server.call_tool()
-async def call_tool(name: str, arguments: dict):
-    """Execute GitHub tool"""
-    if name == "create_issue":
-        repo = github_client.get_repo(arguments["repo"])
-        issue = repo.create_issue(
-            title=arguments["title"],
-            body=arguments.get("body", "")
-        )
-        return {
-            "success": True,
-            "issue_number": issue.number,
-            "url": issue.html_url
-        }</code></pre>
-                            </div>
-                        </div>
-                        
-                        <div class="tab-content" data-tab="client">
-                            <div class="code-showcase">
-                                <div class="code-header">
-                                    <span class="code-title">ai_app.py</span>
-                                    <button class="copy-button" aria-label="Copy code to clipboard" title="Copy code">Copy</button>
-                                </div>
-                                <pre><code># AI Application using GitHub MCP Server
-from mcp import ClientSession, StdioServerParameters
-from mcp.client.stdio import stdio_client
-
-# Connect to GitHub MCP server
-server_params = StdioServerParameters(
-    command="python",
-    args=["github_server.py"]
-)
-
-async def analyze_repo_with_ai():
-    async with stdio_client(server_params) as session:
-        # Discover available resources
-        resources = await session.list_resources()
-        print(f"Available resources: {[r.name for r in resources]}")
-        
-        # Read repository data
-        repo_data = await session.read_resource("github://repos/anthropic/claude")
-        
-        # AI can now analyze this data
-        analysis_prompt = f"""
-        Analyze this repository:
-        Name: {repo_data['name']}
-        Stars: {repo_data['stars']}
-        Language: {repo_data['language']}
-        Description: {repo_data['description']}
-        
-        Provide insights about its popularity and technology stack.
-        """
-        
-        # Use available tools
-        tools = await session.list_tools()
-        if "create_issue" in [tool.name for tool in tools]:
-            # AI decides to create a follow-up issue
-            result = await session.call_tool("create_issue", {
-                "repo": "anthropic/claude",
-                "title": "AI Analysis: Repository Insights",
-                "body": "Automated analysis suggests improvements..."
-            })
-            print(f"Created issue: {result['url']}")
-
-# The magic: AI can now interact with GitHub
-# through a standardized protocol, regardless of
-# the underlying implementation details</code></pre>
-                            </div>
-                        </div>
-                        
-                        <div class="tab-content" data-tab="messages">
-                            <div class="code-showcase">
-                                <div class="code-header">
-                                    <span class="code-title">protocol_messages.json</span>
-                                    <button class="copy-button" aria-label="Copy code to clipboard" title="Copy code">Copy</button>
-                                </div>
-                                <pre><code>// 1. Initialization handshake
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "method": "initialize",
-  "params": {
-    "protocolVersion": "2024-11-05",
-    "capabilities": {
-      "resources": { "subscribe": true },
-      "tools": { "listChanged": true }
-    },
-    "clientInfo": {
-      "name": "Claude Desktop",
-      "version": "1.0.0"
-    }
-  }
-}
-
-// 2. Server response with capabilities
-{
-  "jsonrpc": "2.0",
-  "id": 1,
-  "result": {
-    "protocolVersion": "2024-11-05",
-    "capabilities": {
-      "resources": { "subscribe": true, "listChanged": true },
-      "tools": { "listChanged": true },
-      "prompts": { "listChanged": false }
-    },
-    "serverInfo": {
-      "name": "GitHub MCP Server",
-      "version": "1.0.0"
-    }
-  }
-}
-
-// 3. Resource discovery request
-{
-  "jsonrpc": "2.0",
-  "id": 2,
-  "method": "resources/list"
-}
-
-// 4. Available resources response
-{
-  "jsonrpc": "2.0",
-  "id": 2,
-  "result": {
-    "resources": [
-      {
-        "uri": "github://repos/anthropic/claude",
-        "name": "Claude Repository",
-        "description": "Anthropic's Claude repository data",
-        "mimeType": "application/json"
-      }
-    ]
-  }
-}
-
-// 5. Tool execution request
-{
-  "jsonrpc": "2.0",
-  "id": 3,
-  "method": "tools/call",
-  "params": {
-    "name": "create_issue",
-    "arguments": {
-      "repo": "anthropic/claude",
-      "title": "Bug Report: Login Issue",
-      "body": "Users experiencing login failures..."
-    }
-  }
-}</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="example-card">
-                    <h3>Real-World Implementations</h3>
-                    <div class="implementation-list">
-                        <div class="impl-item">
-                            <div class="impl-icon">🔧</div>
-                            <div class="impl-content">
-                                <h4>Block (Square)</h4>
-                                <p>Integrated MCP to connect AI assistants with internal payment processing systems, reducing integration time by 90%</p>
-                                <div class="impl-stats">
-                                    <span class="stat">50+ internal tools connected</span>
-                                    <span class="stat">90% faster integration</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="impl-item">
-                            <div class="impl-icon">🚀</div>
-                            <div class="impl-content">
-                                <h4>Replit</h4>
-                                <p>Uses MCP to give AI coding assistants real-time access to project files, dependencies, and execution environments</p>
-                                <div class="impl-stats">
-                                    <span class="stat">1M+ projects enhanced</span>
-                                    <span class="stat">Real-time context</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="impl-item">
-                            <div class="impl-icon">⚡</div>
-                            <div class="impl-content">
-                                <h4>Apollo GraphQL</h4>
-                                <p>Leverages MCP for AI-powered GraphQL schema analysis and optimization recommendations</p>
-                                <div class="impl-stats">
-                                    <span class="stat">Schema optimization</span>
-                                    <span class="stat">Automated insights</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="ecosystem-showcase">
-                <h3>Growing MCP Ecosystem</h3>
-                <p>Over 1,000 open-source MCP servers available, covering everything from databases to cloud services</p>
-                <div class="ecosystem-grid">
-                    <div class="ecosystem-category">
-                        <h4>🗄️ Data Sources</h4>
-                        <div class="ecosystem-tags">
-                            <span class="tag">PostgreSQL</span>
-                            <span class="tag">MongoDB</span>
-                            <span class="tag">Redis</span>
-                            <span class="tag">SQLite</span>
-                        </div>
-                    </div>
-                    <div class="ecosystem-category">
-                        <h4>☁️ Cloud Platforms</h4>
-                        <div class="ecosystem-tags">
-                            <span class="tag">AWS</span>
-                            <span class="tag">Google Cloud</span>
-                            <span class="tag">Azure</span>
-                            <span class="tag">Kubernetes</span>
-                        </div>
-                    </div>
-                    <div class="ecosystem-category">
-                        <h4>🛠️ Development Tools</h4>
-                        <div class="ecosystem-tags">
-                            <span class="tag">GitHub</span>
-                            <span class="tag">Slack</span>
-                            <span class="tag">Jira</span>
-                            <span class="tag">Docker</span>
-                        </div>
-                    </div>
-                    <div class="ecosystem-category">
-                        <h4>📊 Analytics</h4>
-                        <div class="ecosystem-tags">
-                            <span class="tag">Google Analytics</span>
-                            <span class="tag">Mixpanel</span>
-                            <span class="tag">Amplitude</span>
-                            <span class="tag">Tableau</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- How MCPs are Different -->
     <section id="how-different" class="section">
         <div class="container">
@@ -1196,8 +876,8 @@ async def analyze_repo_with_ai():
             </div>
 
             <div class="real-output-showcase">
-                <h3>EarningsAgent in Action: Adobe Example</h3>
-                <p class="output-subtitle">Here's what EarningsAgent produces when analyzing Adobe's latest earnings - all generated automatically in under 2 minutes using real data from our system</p>
+                <h3>EarningsAgent in Action: Nike Example</h3>
+                <p class="output-subtitle">Here's what EarningsAgent produces when analyzing Nike's latest earnings - all generated automatically in under 2 minutes using real data from our system</p>
                 
                 <div class="output-tabs">
                     <div class="tab-buttons">
@@ -1209,9 +889,9 @@ async def analyze_repo_with_ai():
                     <div class="tab-content active" data-tab="summary">
                         <div class="summary-report">
                             <div class="report-header">
-                                <h4>🏢 Adobe Inc. (ADBE)</h4>
+                                <h4>🏢 Nike Inc. (NKE)</h4>
                                 <div class="report-meta">
-                                    <span class="meta-item">📅 Q2 2025 Results</span>
+                                    <span class="meta-item">📅 Q4 2025 Results</span>
                                     <span class="meta-item">🕒 Analyzed: June 2025</span>
                                     <span class="meta-item">⚡ Processing Time: 1 minute 52 seconds</span>
                                 </div>
@@ -1221,19 +901,19 @@ async def analyze_repo_with_ai():
                                 <h5>💰 Financial Highlights</h5>
                                 <div class="highlights-grid">
                                     <div class="highlight-item growth">
-                                        <div class="highlight-value">$5.87B</div>
-                                        <div class="highlight-label">Q2 FY2025 Revenue</div>
-                                        <div class="highlight-change">+11% YoY</div>
+                                        <div class="highlight-value">$11.1B</div>
+                                        <div class="highlight-label">Q4 FY2025 Revenue</div>
+                                        <div class="highlight-change">-12% YoY</div>
                                     </div>
                                     <div class="highlight-item guidance">
-                                        <div class="highlight-value">$5.9B</div>
-                                        <div class="highlight-label">Q3 2025 Guidance</div>
-                                        <div class="highlight-change">Beat Est. 1.5%</div>
+                                        <div class="highlight-value">$10.74B</div>
+                                        <div class="highlight-label">Q1 2026 Guidance</div>
+                                        <div class="highlight-change">Beat Est. 3.4%</div>
                                     </div>
                                     <div class="highlight-item margin">
-                                        <div class="highlight-value">35.9%</div>
+                                        <div class="highlight-value">40.3%</div>
                                         <div class="highlight-label">Gross Margin</div>
-                                        <div class="highlight-change">Strong Performance</div>
+                                        <div class="highlight-change">Down 440 bps</div>
                                     </div>
                                 </div>
                             </div>
@@ -1242,23 +922,23 @@ async def analyze_repo_with_ai():
                                 <h5>🤖 AI-Generated Insights</h5>
                                 <div class="insights-content">
                                     <div class="insight-item">
-                                        <strong>📈 Strong Growth:</strong> Adobe generated $5.87 billion in Q2 2025 - an impressive 11% increase from last year, showing the power of their creative software and cloud services.
+                                        <strong>📉 Revenue Decline:</strong> Nike generated $11.1 billion in Q4 2025 - a 12% decline from last year, reflecting challenging market conditions and softening demand for athletic apparel.
                                     </div>
                                     <div class="insight-item">
-                                        <strong>🚀 Creative Cloud Success:</strong> Strong demand for Adobe's design tools and subscription services continues as digital content creation booms across industries.
+                                        <strong>👟 Market Challenges:</strong> Nike faces headwinds from increased competition, inventory challenges, and shifting consumer preferences in the athletic footwear and apparel market.
                                     </div>
                                     <div class="insight-item">
-                                        <strong>💡 Solid Margins:</strong> Adobe maintains a healthy 35.9% gross margin, demonstrating the profitability of their software-as-a-service business model.
+                                        <strong>💡 Margin Pressure:</strong> Nike's gross margin of 40.3% decreased by 440 basis points, impacted by higher costs, tariffs, and promotional activities to clear inventory.
                                     </div>
                                     <div class="insight-item">
-                                        <strong>🎯 Beating Expectations:</strong> Adobe's results beat analyst estimates by 1.5%, with Q3 guidance of $5.9 billion showing continued confidence in creative software demand.
+                                        <strong>🎯 Beating Expectations:</strong> Despite challenges, Nike's Q4 results beat analyst estimates by 3.4%, with Q1 2026 guidance of $10.74 billion suggesting cautious optimism.
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="report-conclusion">
                                 <h5>📋 Bottom Line</h5>
-                                <p>Adobe delivered a strong quarter with $5.87 billion in revenue, showing the power of creative software in our digital world. With impressive 11% growth and results beating estimates by 1.5%, Adobe proves that creative tools are essential for businesses everywhere. Their 35.9% gross margins and raised annual guidance to $23.55 billion demonstrate the strength of subscription-based software.</p>
+                                <p>Nike faced a challenging quarter with $11.1 billion in revenue, down 12% year-over-year as the athletic apparel giant navigates market headwinds. Despite beating estimates by 3.4%, Nike's declining margins (down 440 basis points to 40.3%) and cautious FY2026 guidance of $45.21 billion reflect ongoing challenges in demand and increased competition in the athletic wear market.</p>
                             </div>
                         </div>
                     </div>
@@ -1280,37 +960,37 @@ async def analyze_repo_with_ai():
                                     <tbody>
                                         <tr>
                                             <td><strong>Total Sales (This Quarter)</strong></td>
-                                            <td>$5.87B</td>
-                                            <td>$5.29B</td>
-                                            <td class="positive">+11%</td>
+                                            <td>$11.1B</td>
+                                            <td>$12.61B</td>
+                                            <td class="negative">-12%</td>
                                             <td><span class="status-badge confirmed">Confirmed</span></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Total Sales (Full Year Guidance)</strong></td>
-                                            <td>$23.55B</td>
-                                            <td>$23.3B</td>
-                                            <td class="positive">Raised</td>
+                                            <td>$45.21B</td>
+                                            <td>$49.32B</td>
+                                            <td class="negative">-10%</td>
                                             <td><span class="status-badge confirmed">Updated</span></td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Net Income</strong></td>
-                                            <td>$1.8B</td>
-                                            <td>$1.61B</td>
-                                            <td class="positive">+12%</td>
+                                            <td><strong>Earnings Per Share</strong></td>
+                                            <td>$0.14</td>
+                                            <td>$1.01</td>
+                                            <td class="negative">-86%</td>
                                             <td><span class="status-badge confirmed">Confirmed</span></td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Profit Margin</strong></td>
-                                            <td>35.9%</td>
-                                            <td>34.2%</td>
-                                            <td class="positive">+1.7%</td>
+                                            <td><strong>Gross Margin</strong></td>
+                                            <td>40.3%</td>
+                                            <td>44.7%</td>
+                                            <td class="negative">-440 bps</td>
                                             <td><span class="status-badge confirmed">Confirmed</span></td>
                                         </tr>
                                         <tr>
                                             <td><strong>Next Quarter Prediction</strong></td>
-                                            <td>$5.9B</td>
-                                            <td>$5.8B (Est.)</td>
-                                            <td class="positive">Beat by 1.5%</td>
+                                            <td>$10.74B</td>
+                                            <td>$10.38B (Est.)</td>
+                                            <td class="positive">Beat by 3.4%</td>
                                             <td><span class="status-badge guidance">Forecast</span></td>
                                         </tr>
                                     </tbody>
@@ -1321,22 +1001,22 @@ async def analyze_repo_with_ai():
                                 <h5>🏭 Business Areas</h5>
                                 <div class="segment-grid">
                                     <div class="segment-card">
-                                        <h6>Creative Cloud (Main Business)</h6>
-                                        <div class="segment-value">$3.91B</div>
-                                        <div class="segment-growth">+10% vs last year</div>
-                                        <div class="segment-note">Photoshop, Illustrator, video editing tools</div>
+                                        <h6>Nike Direct (DTC)</h6>
+                                        <div class="segment-value">$5.0B</div>
+                                        <div class="segment-growth">-8% vs last year</div>
+                                        <div class="segment-note">Nike stores, Nike.com, Nike app</div>
                                     </div>
                                     <div class="segment-card">
-                                        <h6>Document Cloud</h6>
-                                        <div class="segment-value">$0.85B</div>
-                                        <div class="segment-growth">+15% vs last year</div>
-                                        <div class="segment-note">PDF tools and digital signatures</div>
+                                        <h6>Wholesale</h6>
+                                        <div class="segment-value">$5.6B</div>
+                                        <div class="segment-growth">-15% vs last year</div>
+                                        <div class="segment-note">Partner retailers, distributors</div>
                                     </div>
                                     <div class="segment-card">
-                                        <h6>Experience Cloud</h6>
-                                        <div class="segment-value">$1.11B</div>
-                                        <div class="segment-growth">+9% vs last year</div>
-                                        <div class="segment-note">Marketing and analytics platforms</div>
+                                        <h6>Other Segments</h6>
+                                        <div class="segment-value">$0.5B</div>
+                                        <div class="segment-growth">-10% vs last year</div>
+                                        <div class="segment-note">Converse, licensing, other</div>
                                     </div>
                                 </div>
                             </div>
@@ -1346,13 +1026,13 @@ async def analyze_repo_with_ai():
                     <div class="tab-content" data-tab="json">
                         <div class="code-showcase">
                             <div class="code-header">
-                                <span class="code-title">adbe_analysis.json (machine-readable data)</span>
+                                <span class="code-title">nke_analysis.json (machine-readable data)</span>
                                 <button class="copy-button">Copy</button>
                             </div>
                             <pre><code>{
-  "company": "Adobe Inc.",
-  "ticker": "ADBE", 
-  "analysis_date": "2025-06-25T14:35:15Z",
+  "company": "Nike Inc.",
+  "ticker": "NKE", 
+  "analysis_date": "2025-06-28T21:50:54Z",
   "processing_time_seconds": 112,
   "data_sources": [
     "Official SEC Filing",
@@ -1362,82 +1042,84 @@ async def analyze_repo_with_ai():
   "financial_metrics": {
     "revenue": {
       "current_quarter": {
-        "value": 5870000000,
-        "period": "Q2 2025", 
+        "value": 11100000000,
+        "period": "Q4 2025", 
         "currency": "USD",
-        "growth_yoy": 11,
+        "growth_yoy": -12,
         "confidence": "high"
       },
       "annual_estimate": {
-        "value": 23550000000,
-        "period": "2025 (guidance)",
-        "growth_yoy": 11,
+        "value": 45210000000,
+        "period": "FY 2026 (guidance)",
+        "growth_yoy": -10,
         "confidence": "high"
       }
     },
     "guidance": {
       "next_quarter_prediction": {
-        "value": 5900000000,
-        "period": "Q3 2025",
-        "range": "$5.875B to $5.925B",
-        "vs_estimates": "above by 1.5%",
+        "value": 10740000000,
+        "period": "Q1 2026",
+        "range": "$10.6B to $10.9B",
+        "vs_estimates": "above by 3.4%",
         "confidence": "official_company_forecast"
       },
       "next_fiscal_year": {
-        "value": 23550000000,
-        "period": "FY 2025",
+        "value": 45210000000,
+        "period": "FY 2026",
         "currency": "USD"
       }
     },
     "profitability": {
       "gross_profit": {
-        "value": 2107000000,
-        "margin_percent": 35.9,
-        "growth_yoy": 12,
-        "period": "Q2 2025"
+        "value": 4477300000,
+        "margin_percent": 40.3,
+        "growth_yoy": -440,
+        "period": "Q4 2025"
       }
     }
   },
   "segment_performance": {
-    "creative_cloud": {
-      "revenue": 3910000000,
-      "growth_yoy": 10,
-      "percentage_of_total": 66.6
+    "nike_direct": {
+      "revenue": 5000000000,
+      "growth_yoy": -8,
+      "percentage_of_total": 45.0
     },
-    "document_cloud": {
-      "revenue": 850000000,
-      "growth_yoy": 15,
-      "percentage_of_total": 14.5
+    "wholesale": {
+      "revenue": 5600000000,
+      "growth_yoy": -15,
+      "percentage_of_total": 50.5
     },
-    "experience_cloud": {
-      "revenue": 1110000000,
-      "growth_yoy": 9,
-      "percentage_of_total": 18.9
+    "other": {
+      "revenue": 500000000,
+      "growth_yoy": -10,
+      "percentage_of_total": 4.5
     }
   },
   "creative_insights": {
     "key_themes": [
-      "Digital content creation boom",
-      "Remote work driving software adoption",
-      "AI integration in creative tools",
-      "Subscription model success"
+      "Inventory management challenges",
+      "Direct-to-consumer strategy shifts",
+      "Competition from newer athletic brands",
+      "Global economic headwinds"
     ],
     "risk_factors": [
-      "Economic slowdown impact on marketing budgets",
-      "Increased competition from free alternatives",
-      "AI disruption of creative workflows"
+      "Increased tariffs and trade costs",
+      "Softening consumer demand",
+      "Wholesale partner challenges",
+      "Currency exchange fluctuations"
     ],
     "growth_drivers": [
-      "Video content creation growth",
-      "Small business digital transformation",
-      "Educational institutions adoption"
+      "Digital commerce expansion",
+      "Innovation in product technology",
+      "Growing women's and Jordan brand",
+      "Emerging market opportunities"
     ]
   },
   "data_quality": {
-    "completeness_score": 92,
+    "completeness_score": 94,
     "confidence_level": "high",
     "source_reliability": "primary_sources",
-    "last_verified": "2025-06-24T17:27:36Z"
+    "last_verified": "2025-06-28T21:50:54Z"
   }
 }</code></pre>
                         </div>

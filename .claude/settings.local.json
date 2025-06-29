@@ -1,7 +1,20 @@
 {
   "permissions": {
     "allow": [
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "Bash(grep:*)",
+      "Bash(python:*)",
+      "Bash(for class in \"ecosystem-showcase\" \"ecosystem-grid\" \"ecosystem-category\" \"ecosystem-tags\" \"impl-item\" \"impl-icon\" \"impl-content\" \"impl-stats\" \"implementation-list\")",
+      "Bash(do echo -n \"$class: \")",
+      "Bash(if grep -q \"^$class$\" /tmp/html_classes.txt)",
+      "Bash(then echo \"USED\")",
+      "Bash(else echo \"NOT USED - CAN REMOVE\")",
+      "Bash(fi)",
+      "Bash(done)",
+      "Bash(for class in \"example-card\" \"code-tabs\" \"tab-button\" \"tab-content\" \"code-showcase\")",
+      "Bash(then echo \"USED - KEEP\")",
+      "Bash(else echo \"NOT USED\")",
+      "Bash(for class in \"tag\" \"stat\" \"metric\")"
     ],
     "deny": []
   }
